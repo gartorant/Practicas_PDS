@@ -1,0 +1,14 @@
+Estructura de ficheros de cada práctica
+
+Pi
+  \src 		<-- códigos fuente .sv
+  \tsb 		<-- bancos de prueba .sv
+  \sim 		<-- Proyecto Modesim
+	\iof 		<-- Ficheros .txt para verificación
+	\do 		<-- Ficheros .do para verificación
+  \tb 		<-- Bancos de pruebas .sv
+  \mat 		<-- Modelos de Matlab/Simulink
+  \quartus 	<-- Proyecto de Quartus
+    \sdc   		<-- Ficheros .sdc
+  \doc 		<-- Memorias/documentación
+   
