@@ -1,0 +1,130 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/garto/Desktop
+vdds_test
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1770393914
+!i10b 1
+!s100 =Uc]_@>T6_52nn_:JM41d3
+IJok4?99@K;]74dPXBXgdh2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 !s105 dds_test_sv_unit
+S1
+Z4 dC:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/sim
+Z5 w1707899260
+Z6 8C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/src/dds_test.sv
+Z7 FC:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/src/dds_test.sv
+L0 1
+Z8 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z9 !s108 1770393914.000000
+Z10 !s107 C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/src/dds_test.sv|
+Z11 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/src/dds_test.sv|
+!i113 1
+Z12 o-work work -sv
+Z13 tCvgOpt 0
+vdds_test_rom
+R0
+R1
+!i10b 1
+!s100 5a<nYTzWF`e:49_JJYnFA3
+IGW:E=Tg=aQiP0kh[mi]^`1
+R2
+R3
+S1
+R4
+R5
+R6
+R7
+L0 34
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+vdds_test_tsb
+R0
+Z14 DXx4 work 16 dds_test_tsb_pkg 0 22 RzEX]lX`<J[LJ@QG<nac^3
+DXx4 work 20 dds_test_tsb_sv_unit 0 22 l:Z`9^P70Ek_cGT0cc:OF1
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 069jN;R`cSK8A@PCnRamR2
+Iah6aZLNSdk]G<^:z:E:Wl1
+!s105 dds_test_tsb_sv_unit
+S1
+R4
+Z15 w1710790490
+Z16 8C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv
+Z17 FC:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv
+L0 4
+R8
+R9
+Z18 !s107 C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv|
+Z19 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv|
+!i113 1
+R12
+R13
+Xdds_test_tsb_pkg
+R0
+R1
+!i10b 1
+!s100 aEfBI<E]dZV8h6<FG_k:71
+IRzEX]lX`<J[LJ@QG<nac^3
+VRzEX]lX`<J[LJ@QG<nac^3
+S1
+R4
+w1770387168
+8C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb_pkg.sv
+FC:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb_pkg.sv
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb_pkg.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/garto/Documents/pds_fpga/2026/Practicas_PDS/P1/tsb/dds_test_tsb_pkg.sv|
+!i113 1
+R12
+R13
+Xdds_test_tsb_sv_unit
+R0
+R14
+Vl:Z`9^P70Ek_cGT0cc:OF1
+r1
+!s85 0
+31
+!i10b 1
+!s100 I9lg;^RRUZGdZVEcb@lz33
+Il:Z`9^P70Ek_cGT0cc:OF1
+!i103 1
+S1
+R4
+R15
+R16
+R17
+L0 2
+R8
+R9
+R18
+R19
+!i113 1
+R12
+R13
