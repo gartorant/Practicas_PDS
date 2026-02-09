@@ -18,7 +18,28 @@ module dds_test #(
   /* DECLARACIONES ------------------------- */
   // b0 ACUMULADOR
   logic [M-1:0] b0_ac_r;  // U[M,0]
+  
+  // b1 PRE PROCESADO
+  logic [L-3:0] b1_pre_w; // 
+  logic b1_pre_ctrl_w;  //
+  logic [L-3:0] b1_pre_addr_r;
+  
+  // b2 
+  logic [W-1:0] b2_od_sin_wave_w;
 
+  // b3 post procesado
+  logic b3_post_ctrl_r1; // 
+  logic b3_post_ctrl_r2; // 
+
+  // b4 
+  logic b4_shift_r0;
+  logic b4_shift_r1;
+  logic b4_shift_r2;
+
+  // b5
+  logic b5_shift_r0;
+  logic b5_shift_r1;
+  logic b5_shift_r2;
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
   always_ff @(posedge clk)
@@ -27,12 +48,50 @@ module dds_test #(
     end else if (ic_en_ac) begin
       b0_ac_r <= b0_ac_r + id_p_ac;
     end
+  
+  // b1 
+    assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos)
+    assign b1_pre_ctrl_w = b0_ac_r[M-2]; // aqui tengo la pendiente L-2 bit de control
 
+    always_ff @(posedge clk) begin
+      if(b1_pre_ctrl_w)
+       b1_pre_addr_r = ~b1_pre_w;
+       else 
+        b1_pre_addr_r = b1_pre_w;
+    end
+    
+    // b2
+    dds_test_rom dds_rom_sin_wave (.ic_addr(b1_pre_addr_r), 
+                   .clk(clk),
+                   .od_rom(b2_od_sin_wave_w));
+    
+    // b3
+    always_ff @(posedge clk) begin
+      b3_post_ctrl_r1 <= b0_ac_r[M-1]; // esto registra
+      b3_post_ctrl_r2 <= b3_post_ctrl_r1; // esto registra
+      if(b3_post_ctrl_r2) 
+        od_sin_wave = ~b2_od_sin_wave_w; // esto registra
+        else
+          od_sin_wave = b2_od_sin_wave_w; // esto registra
+    end
+    // b4
+
+    // b5
+    assign b5_shift_r0 = b0_ac_r[M-1];
+    always_ff @(posedge clk ) begin
+      b5_shift_r1 <= b5_shift_r0;
+    end
+    dds_test_rom dds_rom_b5#( .ADDR_WIDTH (1),
+                              .DATA_WIDTH(W)) (
+                              .ic_addr(b5_shift_r1),
+                              .clk(clk),
+                              .od_rom(od_sqr_wave)
+                             )
 
   /* ASIGNACION SALIDAS ------------------------- */
-
+  
   assign oc_val_data = ic_val_data;  // To do: ir modificando hasta que sea el correcto
-
+  
 endmodule
 
 
