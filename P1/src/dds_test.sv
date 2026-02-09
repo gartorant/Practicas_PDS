@@ -4,42 +4,47 @@ module dds_test #(
     parameter W = 16
 )  // DDS ROM wordlength
 (
-    input         [M-1:0] id_p_ac,       // U[M,0]
-    input                 ic_rst_ac,
-    input                 ic_en_ac,
-    input                 ic_val_data,
-    input                 clk,
-    output signed [W-1:0] od_sqr_wave,   // S[W,W-1]
-    output signed [W-1:0] od_ramp_wave,  // S[W,W-1]
-    output signed [W-1:0] od_sin_wave,   // S[W,W-1]
-    output                oc_val_data
+    input         [M-1:0] id_p_ac,        // U[M,0]
+    input                 ic_rst_ac,      // bit
+    input                 ic_en_ac,       // bit
+    input                 ic_val_data,    // bit
+    input                 clk,            // bit
+    output signed [W-1:0] od_sqr_wave,    // S[W,W-1]
+    output signed [W-1:0] od_ramp_wave,   // S[W,W-1]
+    output signed [W-1:0] od_sin_wave,    // S[W,W-1]
+    output                oc_val_data     // bit
 );
 
   /* DECLARACIONES ------------------------- */
   // b0 ACUMULADOR
-  logic [M-1:0] b0_ac_r;  // U[M,0]
+  logic [M-1:0] b0_ac_r;  // U[M,M]
   
   // b1 PRE PROCESADO
-  logic [L-3:0] b1_pre_w; // 
-  logic b1_pre_ctrl_w;  //
-  logic [L-3:0] b1_pre_addr_r;
+  logic [L-3:0] b1_pre_w;     // U[L-2,L-2]
+  logic b1_pre_ctrl_w;        // bit
+  logic [L-3:0] b1_pre_addr_r;// U[L-2,L-2]
   
   // b2 
-  logic [W-1:0] b2_od_sin_wave_w;
+  logic [W-1:0] b2_od_sin_wave_w; // U[W,W]
 
   // b3 post procesado
-  logic b3_post_ctrl_r1; // 
-  logic b3_post_ctrl_r2; // 
+  logic b3_post_ctrl_r1; // bit
+  logic b3_post_ctrl_r2; // bit
 
   // b4 
-  logic b4_shift_r0;
-  logic b4_shift_r1;
-  logic b4_shift_r2;
+  logic [W-1:0]b4_shift_r0;  //U[W,W]
+  logic [W-1:0]b4_shift_r1;  //U[W,W]
+  logic [W-1:0]b4_shift_r2;  //U[W,W]
 
   // b5
-  logic b5_shift_r0;
-  logic b5_shift_r1;
-  logic b5_shift_r2;
+  logic b5_shift_r0;  // bit
+  logic b5_shift_r1;  // bit
+
+  //b6
+  logic b6_shift_r0;  //bit
+  logic b6_shift_r1;  //bit
+  logic b6_shift_r2;  //bit
+
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
   always_ff @(posedge clk)
@@ -70,28 +75,38 @@ module dds_test #(
       b3_post_ctrl_r1 <= b0_ac_r[M-1]; // esto registra
       b3_post_ctrl_r2 <= b3_post_ctrl_r1; // esto registra
       if(b3_post_ctrl_r2) 
-        od_sin_wave = ~b2_od_sin_wave_w; // esto registra
+          od_sin_wave = ~b2_od_sin_wave_w; // esto registra
         else
           od_sin_wave = b2_od_sin_wave_w; // esto registra
     end
-    // b4
 
+    // b4
+    assign b4_shift_r0 = b0_ac_r[M-2:0];
+    always_ff @(posedge clk) begin
+      b4_shift_r1 = b4_shift_r0;
+      od_ramp_wave = b4_shift_r1;
+    end
+    
     // b5
     assign b5_shift_r0 = b0_ac_r[M-1];
     always_ff @(posedge clk ) begin
       b5_shift_r1 <= b5_shift_r0;
     end
-    dds_test_rom dds_rom_b5#( .ADDR_WIDTH (1),
-                              .DATA_WIDTH(W)) (
-                              .ic_addr(b5_shift_r1),
+    dds_test_rom #( .ADDR_WIDTH (1), // addres 1 bit ROM de dos direcciones
+                    .DATA_WIDTH(W)) 
+                    dds_rom_b5(
+                              .ic_addr(b5_shift_r1), //1 ó O
                               .clk(clk),
-                              .od_rom(od_sqr_wave)
-                             )
-
+                              .od_rom(od_sqr_wave));
+    
+    assign b6_shift_r0 = ic_val_data;
+    always_ff @(posedge clk ) begin
+      b6_shift_r1 = b6_shift_r0;
+      b6_shift_r2 = b6_shift_r1;
+      oc_val_data = b6_shift_r2;
+    end
   /* ASIGNACION SALIDAS ------------------------- */
-  
-  assign oc_val_data = ic_val_data;  // To do: ir modificando hasta que sea el correcto
-  
+
 endmodule
 
 
