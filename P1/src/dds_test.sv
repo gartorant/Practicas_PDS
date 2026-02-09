@@ -98,7 +98,7 @@ module dds_test #(
                               .ic_addr(b5_shift_r1), //1 ó O
                               .clk(clk),
                               .od_rom(od_sqr_wave));
-    
+    // b6
     assign b6_shift_r0 = ic_val_data;
     always_ff @(posedge clk ) begin
       b6_shift_r1 = b6_shift_r0;
