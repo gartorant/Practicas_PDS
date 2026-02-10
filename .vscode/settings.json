@@ -1,0 +1,48 @@
+{
+    // ============================
+    // Configuración general editor
+    // ============================
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    // ============================
+    // Asociaciones de lenguaje
+    // ============================
+    "files.associations": {
+        "*.v": "verilog",
+        "*.sv": "systemverilog",
+        "*.svh": "systemverilog"
+    },
+    // ============================
+    // Verilog / SystemVerilog
+    // ============================
+    "[verilog]": {
+        "editor.defaultFormatter": "kukdh1.verible-formatter",
+        "editor.formatOnSave": true
+    },
+    "[systemverilog]": {
+        "editor.defaultFormatter": "kukdh1.verible-formatter",
+        "editor.formatOnSave": true
+    },
+    // ============================
+    // Verible Formatter
+    // ============================
+    "veribleFormatter.formatter": "verible-verilog-format",
+    "veribleFormatter.arguments": [
+        "--indentation_spaces=4",
+        "--column_limit=100",
+        "--wrap_spaces=4",
+        "--port_declarations_indentation=wrap",
+        "--formal_parameters_indentation=wrap",
+        "--named_parameter_indentation=wrap",
+        "--named_port_indentation=wrap",
+        "--assignment_statement_alignment=align",
+        "--case_items_alignment=align",
+        "--enum_assignment_alignment=align",
+        "--module_net_variable_alignment=align",
+        "--class_member_variable_alignment=align",
+        "--struct_union_members_alignment=align"
+    ]
+}
