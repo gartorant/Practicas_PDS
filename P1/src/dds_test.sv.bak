@@ -58,7 +58,7 @@ module dds_test #(
     end
   
   // b1 
-    assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos) TODO: REVISAR no estoy de acuerdo
+    assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos)
     assign b1_pre_ctrl_s = b0_ac_r[M-2]; // aqui tengo la pendiente L-2 bit de control
 
     always_ff @(posedge clk) begin
@@ -75,7 +75,7 @@ module dds_test #(
     
     // b3
     always_ff @(posedge clk) begin
-      b3_post_ctrl1_r <= b0_ac_r[M-1]; // esto registra los L bits más bajos
+      b3_post_ctrl1_r <= b0_ac_r[M-1]; // esto registra
       b3_post_ctrl_r2 <= b3_post_ctrl1_r; // esto registra
       if(b3_post_ctrl_r2) 
           b3_od_sin_wave_r <= (~b2_od_sin_wave_w); // 
@@ -84,17 +84,25 @@ module dds_test #(
     end
 
     // b4
-    assign b4_shift0_r = b0_ac_r[M-1:L];
+    assign b4_shift0_r = b0_ac_r[M-2:0];
     always_ff @(posedge clk) begin
       b4_shift1_r <= b4_shift0_r;
       b4_shift_r <= b4_shift1_r;
     end
     
     // b5
+    assign b5_shift0_r = b0_ac_r[M-1];
     always_ff @(posedge clk ) begin
-      b5_shift0_r <= b0_ac_r[M-1];
       b5_shift1_r <= b5_shift0_r;
     end
+
+//    // MODIFICARLO POR UN IF-ELSE
+//    dds_test_rom #( .ADDR_WIDTH (2), // dos direcciones
+//                    .DATA_WIDTH(W)) 
+//                    dds_rom_b5(
+//                              .ic_addr(b5_shift1_r), //1 o O
+//                              .clk(clk),
+//                              .od_rom(od_sqr_wave));
 
     always_ff @(posedge clk) begin
       if (b5_shift1_r) begin
@@ -154,4 +162,3 @@ module dds_test_rom #(
   assign od_rom = b0_rom_r;
 
 endmodule
-
