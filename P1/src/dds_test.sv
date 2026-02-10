@@ -21,32 +21,33 @@ module dds_test #(
   
   // b1 PRE PROCESADO
   logic [L-3:0] b1_pre_w;     // U[L-2,L-2]
-  logic b1_pre_ctrl_w;        // bit
+  logic b1_pre_ctrl_s;        // bit
   logic [L-3:0] b1_pre_addr_r;// U[L-2,L-2]
   
   // b2 
   logic [W-1:0] b2_od_sin_wave_w; // U[W,W]
 
   // b3 post procesado
-  logic b3_post_ctrl_r1; // bit
+  logic b3_post_ctrl1_r; // bit
   logic b3_post_ctrl_r2; // bit
-  logic [W-1:0] b3_od_sin_wave_s; // U[W,W]
+  logic [W-1:0] b3_od_sin_wave_r; // U[W,W]
 
   // b4 
-  logic [W-1:0]b4_shift_r0;  //U[W,W]
-  logic [W-1:0]b4_shift_r1;  //U[W,W]
-  logic [W-1:0]b4_shift_r2;  //U[W,W]
-  logic [W-1:0]b4_shift_s;
+  logic [W-1:0]b4_shift0_r;  //U[W,W]
+  logic [W-1:0]b4_shift1_r;  //U[W,W] cambiar en numero en el shift
+  logic [W-1:0]b4_shift2_r;  //U[W,W]
+  logic [W-1:0]b4_shift_r;
 
   // b5
-  logic b5_shift_r0;  // bit
-  logic b5_shift_r1;  // bit
+  logic b5_shift0_r;  // bit
+  logic b5_shift1_r;  // bit
+  logic [W-1:0]b5_ROM_r;  // bit
 
   //b6
-  logic b6_shift_r0;  //bit
-  logic b6_shift_r1;  //bit
-  logic b6_shift_r2;  //bit
-  logic b6_val_data_s; // bit
+  logic b6_shift0_r;  //bit
+  logic b6_shift1_r;  //bit
+  logic b6_shift2_r;  //bit
+  logic b6_val_data_r; // bit
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
   always_ff @(posedge clk)
@@ -58,10 +59,10 @@ module dds_test #(
   
   // b1 
     assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos)
-    assign b1_pre_ctrl_w = b0_ac_r[M-2]; // aqui tengo la pendiente L-2 bit de control
+    assign b1_pre_ctrl_s = b0_ac_r[M-2]; // aqui tengo la pendiente L-2 bit de control
 
     always_ff @(posedge clk) begin
-      if(b1_pre_ctrl_w)
+      if(b1_pre_ctrl_s)
        b1_pre_addr_r <= (~b1_pre_w);
       else 
        b1_pre_addr_r <= b1_pre_w;
@@ -70,47 +71,61 @@ module dds_test #(
     // b2
     dds_test_rom dds_rom_sin_wave (.ic_addr(b1_pre_addr_r), 
                    .clk(clk),
-                   .od_rom(b2_od_sin_wave_w));
+                   .od_rom(b2_od_sin_wave_w)); //TODO: esta es cable cambiar w por s
     
     // b3
     always_ff @(posedge clk) begin
-      b3_post_ctrl_r1 <= b0_ac_r[M-1]; // esto registra
-      b3_post_ctrl_r2 <= b3_post_ctrl_r1; // esto registra
+      b3_post_ctrl1_r <= b0_ac_r[M-1]; // esto registra
+      b3_post_ctrl_r2 <= b3_post_ctrl1_r; // esto registra
       if(b3_post_ctrl_r2) 
-          b3_od_sin_wave_s <= (~b2_od_sin_wave_w); 
+          b3_od_sin_wave_r <= (~b2_od_sin_wave_w); // 
         else
-          b3_od_sin_wave_s <= b2_od_sin_wave_w; // esto registra
+          b3_od_sin_wave_r <= b2_od_sin_wave_w; // esto registra
     end
 
     // b4
-    assign b4_shift_r0 = b0_ac_r[M-2:0];
+    assign b4_shift0_r = b0_ac_r[M-1:L];
     always_ff @(posedge clk) begin
-      b4_shift_r1 <= b4_shift_r0;
-      b4_shift_s <= b4_shift_r1;
+      b4_shift1_r <= b4_shift0_r;
+      b4_shift_r <= b4_shift1_r;
     end
     
     // b5
-    assign b5_shift_r0 = b0_ac_r[M-1];
+    assign b5_shift0_r = b0_ac_r[M-1];
     always_ff @(posedge clk ) begin
-      b5_shift_r1 <= b5_shift_r0;
+      b5_shift1_r <= b5_shift0_r;
     end
-    dds_test_rom #( .ADDR_WIDTH (2), // dos direcciones
-                    .DATA_WIDTH(W)) 
-                    dds_rom_b5(
-                              .ic_addr(b5_shift_r1), //1 o O
-                              .clk(clk),
-                              .od_rom(od_sqr_wave));
+
+//    // MODIFICARLO POR UN IF-ELSE
+//    dds_test_rom #( .ADDR_WIDTH (2), // dos direcciones
+//                    .DATA_WIDTH(W)) 
+//                    dds_rom_b5(
+//                              .ic_addr(b5_shift1_r), //1 o O
+//                              .clk(clk),
+//                              .od_rom(od_sqr_wave));
+
+    always_ff @(posedge clk) begin
+      if (b5_shift1_r) begin
+        b5_ROM_r <= '1;
+      end else begin
+        b5_ROM_r <= '0;
+      end
+    end
     // b6
-    assign b6_shift_r0 = ic_val_data;
+    assign b6_shift0_r = ic_val_data;
     always_ff @(posedge clk ) begin
-      b6_shift_r1 <= b6_shift_r0;
-      b6_shift_r2 <= b6_shift_r1;
-      b6_val_data_s <= b6_shift_r2;
+      // todo falta un registro o uno completo de 4
+      b6_shift1_r <= b6_shift0_r;
+      b6_shift2_r <= b6_shift1_r;
+      b6_val_data_r <= b6_shift2_r; 
     end
   /* ASIGNACION SALIDAS ------------------------- */
-    assign od_sin_wave = b3_od_sin_wave_s;
-    assign od_ramp_wave = b4_shift_s;
-    assign oc_val_data = b6_val_data_s;
+    
+    // ASSIGN SON CABLES YA QUE SON CABLES
+    assign od_sqr_wave = b5_ROM_r;
+    assign od_ramp_wave = b4_shift_r;
+    assign od_sin_wave = b3_od_sin_wave_r;
+    assign oc_val_data = b6_val_data_r;
 endmodule
 
 
@@ -147,3 +162,4 @@ module dds_test_rom #(
   assign od_rom = b0_rom_r;
 
 endmodule
+

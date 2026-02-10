@@ -1,41 +1,513 @@
 # Reading C:/intelFPGA_lite/17.1/modelsim_ase/tcl/vsim/pref.tcl
 # OpenFile C:/PDS_FPGA/2026/Practicas_PDS/P1/sim/dds_test.mpf
 # Loading project dds_test
-# Compile of dds_test.sv failed with 4 errors.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# Compile of dds_test_tsb.sv was successful with warnings.
-# 3 compiles, 1 failed with 4 errors.
-# Compile of dds_test.sv failed with 4 errors.
-# Compile of dds_test.sv failed with 4 errors.
-# Compile of dds_test.sv failed with 4 errors.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# Compile of dds_test_tsb.sv was successful.
-# 3 compiles, 1 failed with 4 errors.
-# Compile of dds_test.sv failed with 4 errors.
-# Compile of dds_test_tsb.sv was successful.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# 3 compiles, 1 failed with 4 errors.
-# Compile of dds_test.sv failed with 4 errors.
-# Compile of dds_test_tsb.sv was successful.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# 3 compiles, 1 failed with 4 errors.
-# Compile of dds_test.sv failed with 1 errors.
-# Compile of dds_test_tsb.sv was successful.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# 3 compiles, 1 failed with 1 error.
-# Compile of dds_test.sv failed with 1 errors.
-# Compile of dds_test_tsb.sv was successful.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# 3 compiles, 1 failed with 1 error.
-# Compile of dds_test.sv failed with 2 errors.
-# Compile of dds_test_tsb.sv was successful.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# 3 compiles, 1 failed with 2 errors.
-# Compile of dds_test.sv failed with 1 errors.
-# Compile of dds_test_tsb.sv was successful.
-# Compile of dds_test_tsb_pkg.sv was successful.
-# 3 compiles, 1 failed with 1 error.
 # Compile of dds_test.sv was successful.
 # Compile of dds_test_tsb.sv was successful.
 # Compile of dds_test_tsb_pkg.sv was successful.
 # 3 compiles, 0 failed with no errors.
+vsim -gui work.dds_test_tsb
+# vsim -gui work.dds_test_tsb 
+# Start time: 23:16:08 on Feb 10,2026
+# Loading sv_std.std
+# Loading work.dds_test_tsb_pkg
+# Loading work.dds_test_tsb_sv_unit
+# Loading work.dds_test_tsb
+# Loading work.dds_test
+# Loading work.dds_test_rom
+add wave -position insertpoint  \
+sim:/dds_test_tsb/P \
+sim:/dds_test_tsb/rst_ac \
+sim:/dds_test_tsb/en_ac \
+sim:/dds_test_tsb/clk \
+sim:/dds_test_tsb/val_in \
+sim:/dds_test_tsb/val_out \
+sim:/dds_test_tsb/sin_wave \
+sim:/dds_test_tsb/ramp_wave \
+sim:/dds_test_tsb/sqr_wave \
+sim:/dds_test_tsb/sin_wave_M \
+sim:/dds_test_tsb/sin_wave_F \
+sim:/dds_test_tsb/ramp_wave_M \
+sim:/dds_test_tsb/ramp_wave_F \
+sim:/dds_test_tsb/sqr_wave_M \
+sim:/dds_test_tsb/sqr_wave_F \
+sim:/dds_test_tsb/in_sample_cnt \
+sim:/dds_test_tsb/error_cnt \
+sim:/dds_test_tsb/sample_cnt \
+sim:/dds_test_tsb/end_sim \
+sim:/dds_test_tsb/load_data
+run -all
+########################################### 
+# START TEST #           1
+########################################### 
+# Error in sample number           1
+# Error in sample number           2
+# Error in sample number           3
+# Error in sample number           4
+# Error in sample number           5
+# Error in sample number           6
+# Error in sample number           7
+# Error in sample number           8
+# Error in sample number           9
+# Error in sample number          10
+# Error in sample number          11
+# Error in sample number          12
+# Error in sample number          13
+# Error in sample number          14
+# Error in sample number          15
+# Error in sample number          16
+# Error in sample number          17
+# Error in sample number          18
+# Error in sample number          19
+# Error in sample number          20
+# Error in sample number          21
+# Error in sample number          22
+# Error in sample number          23
+# Error in sample number          24
+# Error in sample number          25
+# Error in sample number          26
+# Error in sample number          27
+# Error in sample number          28
+# Error in sample number          29
+# Error in sample number          30
+# Error in sample number          31
+# Error in sample number          32
+# Error in sample number          33
+# Error in sample number          34
+# Error in sample number          35
+# Error in sample number          36
+# Error in sample number          37
+# Error in sample number          38
+# Error in sample number          39
+# Error in sample number          40
+# Error in sample number          41
+# Error in sample number          42
+# Error in sample number          43
+# Error in sample number          44
+# Error in sample number          45
+# Error in sample number          46
+# Error in sample number          47
+# Error in sample number          48
+# Error in sample number          49
+# Error in sample number          50
+# Error in sample number          51
+# Error in sample number          52
+# Error in sample number          53
+# Error in sample number          54
+# Error in sample number          55
+# Error in sample number          56
+# Error in sample number          57
+# Error in sample number          58
+# Error in sample number          59
+# Error in sample number          60
+# Error in sample number          61
+# Error in sample number          62
+# Error in sample number          63
+# Error in sample number          64
+# Error in sample number          65
+# Error in sample number          66
+# Error in sample number          67
+# Error in sample number          68
+# Error in sample number          69
+# Error in sample number          70
+# Error in sample number          71
+# Error in sample number          72
+# Error in sample number          73
+# Error in sample number          74
+# Error in sample number          75
+# Error in sample number          76
+# Error in sample number          77
+# Error in sample number          78
+# Error in sample number          79
+# Error in sample number          80
+# Error in sample number          81
+# Error in sample number          82
+# Error in sample number          83
+# Error in sample number          84
+# Error in sample number          85
+# Error in sample number          86
+# Error in sample number          87
+# Error in sample number          88
+# Error in sample number          89
+# Error in sample number          90
+# Error in sample number          91
+# Error in sample number          92
+# Error in sample number          93
+# Error in sample number          94
+# Error in sample number          95
+# Error in sample number          96
+# Error in sample number          97
+# Error in sample number          98
+# Error in sample number          99
+# Error in sample number         100
+# Error in sample number         101
+# Error in sample number         102
+# Error in sample number         103
+# Error in sample number         104
+# Error in sample number         105
+# Error in sample number         106
+# Error in sample number         107
+# Error in sample number         108
+# Error in sample number         109
+# Error in sample number         110
+# Error in sample number         111
+# Error in sample number         112
+# Error in sample number         113
+# Error in sample number         114
+# Error in sample number         115
+# Error in sample number         116
+# Error in sample number         117
+# Error in sample number         118
+# Error in sample number         119
+# Error in sample number         120
+# Error in sample number         121
+# Error in sample number         122
+# Error in sample number         123
+# Error in sample number         124
+# Error in sample number         125
+# Error in sample number         126
+# Error in sample number         127
+# Error in sample number         128
+# Error in sample number         129
+# Error in sample number         130
+# Error in sample number         131
+# Error in sample number         132
+# Error in sample number         133
+# Error in sample number         134
+# Error in sample number         135
+# Error in sample number         136
+# Error in sample number         137
+# Error in sample number         138
+# Error in sample number         139
+# Error in sample number         140
+# Error in sample number         141
+# Error in sample number         142
+# Error in sample number         143
+# Error in sample number         144
+# Error in sample number         145
+# Error in sample number         146
+# Error in sample number         147
+# Error in sample number         148
+# Error in sample number         149
+# Error in sample number         150
+# Error in sample number         151
+# Error in sample number         152
+# Error in sample number         153
+# Error in sample number         154
+# Error in sample number         155
+# Error in sample number         156
+# Error in sample number         157
+# Error in sample number         158
+# Error in sample number         159
+# Error in sample number         160
+# Error in sample number         161
+# Error in sample number         162
+# Error in sample number         163
+# Error in sample number         164
+# Error in sample number         165
+# Error in sample number         166
+# Error in sample number         167
+# Error in sample number         168
+# Error in sample number         169
+# Error in sample number         170
+# Error in sample number         171
+# Error in sample number         172
+# Error in sample number         173
+# Error in sample number         174
+# Error in sample number         175
+# Error in sample number         176
+# Error in sample number         177
+# Error in sample number         178
+# Error in sample number         179
+# Error in sample number         180
+# Error in sample number         181
+# Error in sample number         182
+# Error in sample number         183
+# Error in sample number         184
+# Error in sample number         185
+# Error in sample number         186
+# Error in sample number         187
+# Error in sample number         188
+# Error in sample number         189
+# Error in sample number         190
+# Error in sample number         191
+# Error in sample number         192
+# Error in sample number         193
+# Error in sample number         194
+# Error in sample number         195
+# Error in sample number         196
+# Error in sample number         197
+# Error in sample number         198
+# Error in sample number         199
+# Error in sample number         200
+# Error in sample number         201
+# Error in sample number         202
+# Error in sample number         203
+# Error in sample number         204
+# Error in sample number         205
+# Error in sample number         206
+# Error in sample number         207
+# Error in sample number         208
+# Error in sample number         209
+# Error in sample number         210
+# Error in sample number         211
+# Error in sample number         212
+# Error in sample number         213
+# Error in sample number         214
+# Error in sample number         215
+# Error in sample number         216
+# Error in sample number         217
+# Error in sample number         218
+# Error in sample number         219
+# Error in sample number         220
+# Error in sample number         221
+# Error in sample number         222
+# Error in sample number         223
+# Error in sample number         224
+# Error in sample number         225
+# Error in sample number         226
+# Error in sample number         227
+# Error in sample number         228
+# Error in sample number         229
+# Error in sample number         230
+# Error in sample number         231
+# Error in sample number         232
+# Error in sample number         233
+# Error in sample number         234
+# Error in sample number         235
+# Error in sample number         236
+# Error in sample number         237
+# Error in sample number         238
+# Error in sample number         239
+# Error in sample number         240
+# Error in sample number         241
+# Error in sample number         242
+# Error in sample number         243
+# Error in sample number         244
+# Error in sample number         245
+# Error in sample number         246
+# Error in sample number         247
+# Error in sample number         248
+# Error in sample number         249
+# Error in sample number         250
+# Error in sample number         251
+# Error in sample number         252
+# Error in sample number         253
+# Error in sample number         254
+# Error in sample number         255
+# Error in sample number         256
+# Error in sample number         257
+# Error in sample number         258
+# Error in sample number         259
+# Error in sample number         260
+# Error in sample number         261
+# Error in sample number         262
+# Error in sample number         263
+# Error in sample number         264
+# Error in sample number         265
+# Error in sample number         266
+# Error in sample number         267
+# Error in sample number         268
+# Error in sample number         269
+# Error in sample number         270
+# Error in sample number         271
+# Error in sample number         272
+# Error in sample number         273
+# Error in sample number         274
+# Error in sample number         275
+# Error in sample number         276
+# Error in sample number         277
+# Error in sample number         278
+# Error in sample number         279
+# Error in sample number         280
+# Error in sample number         281
+# Error in sample number         282
+# Error in sample number         283
+# Error in sample number         284
+# Error in sample number         285
+# Error in sample number         286
+# Error in sample number         287
+# Error in sample number         288
+# Error in sample number         289
+# Error in sample number         290
+# Error in sample number         291
+# Error in sample number         292
+# Error in sample number         293
+# Error in sample number         294
+# Error in sample number         295
+# Error in sample number         296
+# Error in sample number         297
+# Error in sample number         298
+# Error in sample number         299
+# Error in sample number         300
+# Error in sample number         301
+# Error in sample number         302
+# Error in sample number         303
+# Error in sample number         304
+# Error in sample number         305
+# Error in sample number         306
+# Error in sample number         307
+# Error in sample number         308
+# Error in sample number         309
+# Error in sample number         310
+# Error in sample number         311
+# Error in sample number         312
+# Error in sample number         313
+# Error in sample number         314
+# Error in sample number         315
+# Error in sample number         316
+# Error in sample number         317
+# Error in sample number         318
+# Error in sample number         319
+# Error in sample number         320
+# Error in sample number         321
+# Error in sample number         322
+# Error in sample number         323
+# Error in sample number         324
+# Error in sample number         325
+# Error in sample number         326
+# Error in sample number         327
+# Error in sample number         328
+# Error in sample number         329
+# Error in sample number         330
+# Error in sample number         331
+# Error in sample number         332
+# Error in sample number         333
+# Error in sample number         334
+# Error in sample number         335
+# Error in sample number         336
+# Error in sample number         337
+# Error in sample number         338
+# Error in sample number         339
+# Error in sample number         340
+# Error in sample number         341
+# Error in sample number         342
+# Error in sample number         343
+# Error in sample number         344
+# Error in sample number         345
+# Error in sample number         346
+# Error in sample number         347
+# Error in sample number         348
+# Error in sample number         349
+# Error in sample number         350
+# Error in sample number         351
+# Error in sample number         352
+# Error in sample number         353
+# Error in sample number         354
+# Error in sample number         355
+# Error in sample number         356
+# Error in sample number         357
+# Error in sample number         358
+# Error in sample number         359
+# Error in sample number         360
+# Error in sample number         361
+# Error in sample number         362
+# Error in sample number         363
+# Error in sample number         364
+# Error in sample number         365
+# Error in sample number         366
+# Error in sample number         367
+# Error in sample number         368
+# Error in sample number         369
+# Error in sample number         370
+# Error in sample number         371
+# Error in sample number         372
+# Error in sample number         373
+# Error in sample number         374
+# Error in sample number         375
+# Error in sample number         376
+# Error in sample number         377
+# Error in sample number         378
+# Error in sample number         379
+# Error in sample number         380
+# Error in sample number         381
+# Error in sample number         382
+# Error in sample number         383
+# Error in sample number         384
+# Error in sample number         385
+# Error in sample number         386
+# Error in sample number         387
+# Error in sample number         388
+# Error in sample number         389
+# Error in sample number         390
+# Error in sample number         391
+# Error in sample number         392
+# Error in sample number         393
+# Error in sample number         394
+# Error in sample number         395
+# Error in sample number         396
+# Error in sample number         397
+# Error in sample number         398
+# Error in sample number         399
+# Error in sample number         400
+# Error in sample number         401
+# Error in sample number         402
+# Error in sample number         403
+# Error in sample number         404
+# Error in sample number         405
+# Error in sample number         406
+# Error in sample number         407
+# Error in sample number         408
+# Error in sample number         409
+# Error in sample number         410
+# Error in sample number         411
+# Error in sample number         412
+# Error in sample number         413
+# Error in sample number         414
+# Error in sample number         415
+# Error in sample number         416
+# Error in sample number         417
+# Error in sample number         418
+# Error in sample number         419
+# Error in sample number         420
+# Error in sample number         421
+# Error in sample number         422
+# Error in sample number         423
+# Error in sample number         424
+# Error in sample number         425
+# Error in sample number         426
+# Error in sample number         427
+# Error in sample number         428
+# Error in sample number         429
+# Error in sample number         430
+# Error in sample number         431
+# Error in sample number         432
+# Error in sample number         433
+# Error in sample number         434
+# Error in sample number         435
+# Error in sample number         436
+# Error in sample number         437
+# Error in sample number         438
+# Error in sample number         439
+# Error in sample number         440
+# Error in sample number         441
+# Error in sample number         442
+# Error in sample number         443
+# Error in sample number         444
+# Error in sample number         445
+# Error in sample number         446
+# Error in sample number         447
+# Error in sample number         448
+# Error in sample number         449
+# Error in sample number         450
+# Error in sample number         451
+# Error in sample number         452
+# Error in sample number         453
+# Error in sample number         454
+# Error in sample number         455
+# Error in sample number         456
+# Error in sample number         457
+#  Number of input samples         457
+########################################### 
+# TEST #           1
+# M =          27
+# L =          15
+# W =          14
+# P =   1537911
+########################################### 
+# Number of checked samples         457
+# Number of errors         457
+########################################### 
+# ** Note: $stop    : C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv(143)
+#    Time: 4790 ns  Iteration: 0  Instance: /dds_test_tsb
+# Break in Module dds_test_tsb at C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv line 143
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/PDS_FPGA/2026/Practicas_PDS/P1/do/dds_test_tsb2.wlf

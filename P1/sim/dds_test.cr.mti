@@ -1,6 +1,5 @@
-../tsb/dds_test_tsb.sv {2 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv
+../tsb/dds_test_tsb.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-** Warning: C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv(2): (vlog-13233) Design unit "dds_test_tsb_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
 -- Compiling package dds_test_tsb_sv_unit
 -- Importing package dds_test_tsb_pkg
 -- Compiling module dds_test_tsb
@@ -14,5 +13,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	--none--
+
+} {} {}} ../src/dds_test.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P1/src/dds_test.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module dds_test
+-- Compiling module dds_test_rom
+
+Top level modules:
+	dds_test
 
 } {} {}}
