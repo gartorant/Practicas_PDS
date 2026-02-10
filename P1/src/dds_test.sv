@@ -60,9 +60,9 @@ module dds_test #(
 
     always_ff @(posedge clk) begin
       if(b1_pre_ctrl_w)
-       b1_pre_addr_r = ~b1_pre_w;
-       else 
-        b1_pre_addr_r = b1_pre_w;
+       b1_pre_addr_r <= (~b1_pre_w)+1;
+      else 
+       b1_pre_addr_r <= b1_pre_w;
     end
     
     // b2
@@ -75,9 +75,9 @@ module dds_test #(
       b3_post_ctrl_r1 <= b0_ac_r[M-1]; // esto registra
       b3_post_ctrl_r2 <= b3_post_ctrl_r1; // esto registra
       if(b3_post_ctrl_r2) 
-          od_sin_wave = ~b2_od_sin_wave_w; // esto registra
+          od_sin_wave <= (~b2_od_sin_wave_w)+1; // Complemento a2
         else
-          od_sin_wave = b2_od_sin_wave_w; // esto registra
+          od_sin_wave <= b2_od_sin_wave_w; // esto registra
     end
 
     // b4
