@@ -92,10 +92,10 @@ module dds_test #(
     always_ff @(posedge clk ) begin
       b5_shift_r1 <= b5_shift_r0;
     end
-    dds_test_rom #( .ADDR_WIDTH (2), // dos direcciones
+    dds_test_rom #( .ADDR_WIDTH (1), // addres 1 bit ROM de dos direcciones
                     .DATA_WIDTH(W)) 
                     dds_rom_b5(
-                              .ic_addr(b5_shift_r1), //1 o O
+                              .ic_addr(b5_shift_r1), //1 ó O
                               .clk(clk),
                               .od_rom(od_sqr_wave));
     // b6
