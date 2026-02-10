@@ -7,7 +7,7 @@
 # 3 compiles, 0 failed with no errors.
 vsim -gui work.dds_test_tsb
 # vsim -gui work.dds_test_tsb 
-# Start time: 23:16:08 on Feb 10,2026
+# Start time: 23:34:51 on Feb 10,2026
 # Loading sv_std.std
 # Loading work.dds_test_tsb_pkg
 # Loading work.dds_test_tsb_sv_unit
@@ -510,4 +510,5 @@ run -all
 # ** Note: $stop    : C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv(143)
 #    Time: 4790 ns  Iteration: 0  Instance: /dds_test_tsb
 # Break in Module dds_test_tsb at C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv line 143
-write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/PDS_FPGA/2026/Practicas_PDS/P1/do/dds_test_tsb2.wlf
+# End time: 23:38:36 on Feb 10,2026, Elapsed time: 0:03:45
+# Errors: 0, Warnings: 0
