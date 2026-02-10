@@ -15,3 +15,27 @@
 # Compile of dds_test_tsb.sv was successful.
 # Compile of dds_test_tsb_pkg.sv was successful.
 # 3 compiles, 1 failed with 4 errors.
+# Compile of dds_test.sv failed with 4 errors.
+# Compile of dds_test_tsb.sv was successful.
+# Compile of dds_test_tsb_pkg.sv was successful.
+# 3 compiles, 1 failed with 4 errors.
+# Compile of dds_test.sv failed with 1 errors.
+# Compile of dds_test_tsb.sv was successful.
+# Compile of dds_test_tsb_pkg.sv was successful.
+# 3 compiles, 1 failed with 1 error.
+# Compile of dds_test.sv failed with 1 errors.
+# Compile of dds_test_tsb.sv was successful.
+# Compile of dds_test_tsb_pkg.sv was successful.
+# 3 compiles, 1 failed with 1 error.
+# Compile of dds_test.sv failed with 2 errors.
+# Compile of dds_test_tsb.sv was successful.
+# Compile of dds_test_tsb_pkg.sv was successful.
+# 3 compiles, 1 failed with 2 errors.
+# Compile of dds_test.sv failed with 1 errors.
+# Compile of dds_test_tsb.sv was successful.
+# Compile of dds_test_tsb_pkg.sv was successful.
+# 3 compiles, 1 failed with 1 error.
+# Compile of dds_test.sv was successful.
+# Compile of dds_test_tsb.sv was successful.
+# Compile of dds_test_tsb_pkg.sv was successful.
+# 3 compiles, 0 failed with no errors.

@@ -30,11 +30,13 @@ module dds_test #(
   // b3 post procesado
   logic b3_post_ctrl_r1; // bit
   logic b3_post_ctrl_r2; // bit
+  logic [W-1:0] b3_od_sin_wave_s; // U[W,W]
 
   // b4 
   logic [W-1:0]b4_shift_r0;  //U[W,W]
   logic [W-1:0]b4_shift_r1;  //U[W,W]
   logic [W-1:0]b4_shift_r2;  //U[W,W]
+  logic [W-1:0]b4_shift_s;
 
   // b5
   logic b5_shift_r0;  // bit
@@ -44,7 +46,7 @@ module dds_test #(
   logic b6_shift_r0;  //bit
   logic b6_shift_r1;  //bit
   logic b6_shift_r2;  //bit
-
+  logic b6_val_data_s; // bit
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
   always_ff @(posedge clk)
@@ -60,7 +62,7 @@ module dds_test #(
 
     always_ff @(posedge clk) begin
       if(b1_pre_ctrl_w)
-       b1_pre_addr_r <= (~b1_pre_w)+1;
+       b1_pre_addr_r <= (~b1_pre_w);
       else 
        b1_pre_addr_r <= b1_pre_w;
     end
@@ -75,16 +77,16 @@ module dds_test #(
       b3_post_ctrl_r1 <= b0_ac_r[M-1]; // esto registra
       b3_post_ctrl_r2 <= b3_post_ctrl_r1; // esto registra
       if(b3_post_ctrl_r2) 
-          od_sin_wave <= (~b2_od_sin_wave_w)+1; // Complemento a2
+          b3_od_sin_wave_s <= (~b2_od_sin_wave_w); 
         else
-          od_sin_wave <= b2_od_sin_wave_w; // esto registra
+          b3_od_sin_wave_s <= b2_od_sin_wave_w; // esto registra
     end
 
     // b4
     assign b4_shift_r0 = b0_ac_r[M-2:0];
     always_ff @(posedge clk) begin
-      b4_shift_r1 = b4_shift_r0;
-      od_ramp_wave = b4_shift_r1;
+      b4_shift_r1 <= b4_shift_r0;
+      b4_shift_s <= b4_shift_r1;
     end
     
     // b5
@@ -101,12 +103,14 @@ module dds_test #(
     // b6
     assign b6_shift_r0 = ic_val_data;
     always_ff @(posedge clk ) begin
-      b6_shift_r1 = b6_shift_r0;
-      b6_shift_r2 = b6_shift_r1;
-      oc_val_data = b6_shift_r2;
+      b6_shift_r1 <= b6_shift_r0;
+      b6_shift_r2 <= b6_shift_r1;
+      b6_val_data_s <= b6_shift_r2;
     end
   /* ASIGNACION SALIDAS ------------------------- */
-
+    assign od_sin_wave = b3_od_sin_wave_s;
+    assign od_ramp_wave = b4_shift_s;
+    assign oc_val_data = b6_val_data_s;
 endmodule
 
 
