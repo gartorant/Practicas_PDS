@@ -57,9 +57,10 @@ module dds_test #(
       b0_ac_r <= b0_ac_r + id_p_ac;
     end
   
-  // b1 
-    assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos) TODO: REVISAR no estoy de acuerdo
-    assign b1_pre_ctrl_s = b0_ac_r[M-2]; // aqui tengo la pendiente L-2 bit de control
+  // b1 REVISAR AHORA
+    //assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos) TODO: REVISAR no estoy de acuerdo
+    assign b1_pre_w = b0_ac_r[M-W-3:0]; // Los L bits más bajos de M 
+    assign b1_pre_ctrl_s = b0_ac_r[M-W-2]; // aqui tengo la pendiente L-2 bit de control
 
     always_ff @(posedge clk) begin
       if(b1_pre_ctrl_s)
@@ -75,7 +76,7 @@ module dds_test #(
     
     // b3
     always_ff @(posedge clk) begin
-      b3_post_ctrl1_r <= b0_ac_r[M-1]; // esto registra los L bits más bajos
+      b3_post_ctrl1_r <= b0_ac_r[M-W-1]; // Registra el Bit L-1 para el post procesado
       b3_post_ctrl_r2 <= b3_post_ctrl1_r; // esto registra
       if(b3_post_ctrl_r2) 
           b3_od_sin_wave_r <= (~b2_od_sin_wave_w); // 
@@ -84,7 +85,7 @@ module dds_test #(
     end
 
     // b4
-    assign b4_shift0_r = b0_ac_r[M-1:L];
+    assign b4_shift0_r = b0_ac_r[M-1:M-W]; // los W bits más altos de M
     always_ff @(posedge clk) begin
       b4_shift1_r <= b4_shift0_r;
       b4_shift_r <= b4_shift1_r;
