@@ -85,7 +85,7 @@ module dds_test #(
     end
 
     // b4
-    assign b4_shift0_r = b0_ac_r[M-1:M-W]; // los W bits más altos de M
+    assign b4_shift0_r = b0_ac_r[M-1:M-W]; // los W bits más altos de M; NO REGISTRA
     always_ff @(posedge clk) begin
       b4_shift1_r <= b4_shift0_r;
       b4_shift_r <= b4_shift1_r;
@@ -94,11 +94,15 @@ module dds_test #(
     // b5
     always_ff @(posedge clk ) begin
       b5_shift0_r <= b0_ac_r[M-1];
-      b5_shift1_r <= b5_shift0_r;
+      //b5_shift1_r <= b5_shift0_r;
     end
 
-    always_ff @(posedge clk ) begin
-      b5_ROM_r<={ ~b5_shift1_r, {(W-1){1'b1}} };
+   always_ff @(posedge clk) begin
+      if (b5_shift0_r) begin
+        b5_ROM_r <= {1'b1,{(W-1){1'b1}}}; // Si el bit de control es 1,el valor positivo max es <1
+      end else begin
+        b5_ROM_r <= {1'b0,{(W-1){1'b1}}}; // Si el bit de control es 0, el valor más negativo es -1
+      end
     end
 
     // b6
