@@ -99,11 +99,12 @@ module dds_test #(
 
     always_ff @(posedge clk) begin
       if (b5_shift1_r) begin
-        b5_ROM_r <= '1;
+        b5_ROM_r <= {1'b0,(W-1){1'b1}}; // Si el bit de control es 1,el valor positivo max es <1
       end else begin
-        b5_ROM_r <= '0;
+        b5_ROM_r <= {1'b1,(W-1){1'b1}}; // Si el bit de control es 0, el valor más negativo es -1
       end
     end
+
     // b6
     assign b6_shift0_r = ic_val_data;
     always_ff @(posedge clk ) begin
