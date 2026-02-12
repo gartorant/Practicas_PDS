@@ -7,6 +7,7 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	dds_test_tsb
 
+<<<<<<< HEAD
 } {} {}} ../tsb/dds_test_tsb_pkg.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb_pkg.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling package dds_test_tsb_pkg
@@ -14,4 +15,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	--none--
 
+=======
+>>>>>>> 2c4b0e6 (solving merge)
 } {} {}}
