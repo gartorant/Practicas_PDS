@@ -20,16 +20,16 @@ module dds_test #(
   logic [M-1:0] b0_ac_r;  // U[M,M]
   
   // b1 PRE PROCESADO
-  logic [L-3:0] b1_pre_w;     // U[L-2,L-2]
+  logic [L-3:0] b1_pre_s;     // U[L-2,L-2]
   logic b1_pre_ctrl_s;        // bit
   logic [L-3:0] b1_pre_addr_r;// U[L-2,L-2]
   
   // b2 
-  logic [W-1:0] b2_od_sin_wave_w; // U[W,W]
+  logic [W-1:0] b2_od_sin_wave_s; // U[W,W]
 
   // b3 post procesado
   logic b3_post_ctrl1_r; // bit
-  logic b3_post_ctrl_r2; // bit
+  logic b3_post_ctrl_2r; // bit
   logic [W-1:0] b3_od_sin_wave_r; // U[W,W]
 
   // b4 
@@ -47,6 +47,7 @@ module dds_test #(
   logic b6_shift0_r;  //bit
   logic b6_shift1_r;  //bit
   logic b6_shift2_r;  //bit
+  logic b6_shift3_r;  //bit
   logic b6_val_data_r; // bit
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
@@ -57,37 +58,38 @@ module dds_test #(
       b0_ac_r <= b0_ac_r + id_p_ac;
     end
   
-  // b1 
-    assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos) TODO: REVISAR no estoy de acuerdo
-    assign b1_pre_ctrl_s = b0_ac_r[M-2]; // aqui tengo la pendiente L-2 bit de control
+  // b1 REVISAR AHORA
+    assign b1_pre_s = b0_ac_r[M-3:M-L]; // Los L-3 bits más altos que entran en la memoria 
+    assign b1_pre_ctrl_s = b0_ac_r[M-2]; // aqui tengo la pendiente M-2 bit de control
 
     always_ff @(posedge clk) begin
       if(b1_pre_ctrl_s)
-       b1_pre_addr_r <= (~b1_pre_w);
+       b1_pre_addr_r <= (~b1_pre_s);
       else 
-       b1_pre_addr_r <= b1_pre_w;
+       b1_pre_addr_r <= b1_pre_s;
     end
     
     // b2
-    dds_test_rom dds_rom_sin_wave (.ic_addr(b1_pre_addr_r), 
+    dds_test_rom #(.ADDR_WIDTH(L-2), .DATA_WIDTH(W)) dds_rom_sin_wave (.ic_addr(b1_pre_addr_r), 
                    .clk(clk),
-                   .od_rom(b2_od_sin_wave_w)); //TODO: esta es cable cambiar w por s
+                   .od_rom(b2_od_sin_wave_s));
     
     // b3
     always_ff @(posedge clk) begin
-      b3_post_ctrl1_r <= b0_ac_r[M-1]; // esto registra los L bits más bajos
-      b3_post_ctrl_r2 <= b3_post_ctrl1_r; // esto registra
-      if(b3_post_ctrl_r2) 
-          b3_od_sin_wave_r <= (~b2_od_sin_wave_w); // 
+      b3_post_ctrl1_r <= b0_ac_r[M-1]; // Registra el Bit M-1 para el post procesado
+      b3_post_ctrl_2r <= b3_post_ctrl1_r; // esto registra
+      if(b3_post_ctrl_2r) 
+          b3_od_sin_wave_r <= (~b2_od_sin_wave_s)+1;
         else
-          b3_od_sin_wave_r <= b2_od_sin_wave_w; // esto registra
+          b3_od_sin_wave_r <= b2_od_sin_wave_s; // esto registra
     end
 
     // b4
-    assign b4_shift0_r = b0_ac_r[M-1:L];
+    assign b4_shift0_r = b0_ac_r[M-1:M-W]; // los W bits más altos de M; NO REGISTRA
     always_ff @(posedge clk) begin
       b4_shift1_r <= b4_shift0_r;
-      b4_shift_r <= b4_shift1_r;
+      b4_shift2_r <= b4_shift1_r;
+      b4_shift_r  <= b4_shift2_r;
     end
     
     // b5
@@ -96,27 +98,30 @@ module dds_test #(
       b5_shift1_r <= b5_shift0_r;
     end
 
-    always_ff @(posedge clk) begin
+   always_ff @(posedge clk) begin
       if (b5_shift1_r) begin
-        b5_ROM_r <= '1;
+        b5_ROM_r <= {1'b1,{(W-2){1'b0}},1'b1}; // Si el bit de control es 1,el valor positivo max es <1
       end else begin
-        b5_ROM_r <= '0;
+        b5_ROM_r <= {1'b0,{(W-1){1'b1}}}; // Si el bit de control es 0, el valor más negativo es -1
       end
+   
     end
+
     // b6
     assign b6_shift0_r = ic_val_data;
     always_ff @(posedge clk ) begin
       // todo falta un registro o uno completo de 4
       b6_shift1_r <= b6_shift0_r;
       b6_shift2_r <= b6_shift1_r;
-      b6_val_data_r <= b6_shift2_r; 
+      b6_shift3_r <= b6_shift2_r;
+      b6_val_data_r <= b6_shift3_r;
     end
   /* ASIGNACION SALIDAS ------------------------- */
     
     // ASSIGN SON CABLES YA QUE SON CABLES
-    assign od_sqr_wave = b5_ROM_r;
-    assign od_ramp_wave = b4_shift_r;
     assign od_sin_wave = b3_od_sin_wave_r;
+    assign od_ramp_wave = b4_shift_r;
+    assign od_sqr_wave = b5_ROM_r;
     assign oc_val_data = b6_val_data_r;
 endmodule
 
