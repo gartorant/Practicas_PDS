@@ -25,7 +25,7 @@ module dds_test #(
   logic [L-3:0] b1_pre_addr_r;// U[L-2,L-2]
   
   // b2 
-  logic [W-1:0] b2_od_sin_wave_w; // U[W,W]
+  logic [W-1:0] b2_od_sin_wave_s; // U[W,W]
 
   // b3 post procesado
   logic b3_post_ctrl1_r; // bit
@@ -59,8 +59,8 @@ module dds_test #(
   
   // b1 REVISAR AHORA
     //assign b1_pre_w = b0_ac_r[M-1 : M-L]; // los L BITS MSB (los más altos) TODO: REVISAR no estoy de acuerdo
-    assign b1_pre_w = b0_ac_r[M-W-3:0]; // Los L bits más bajos de M 
-    assign b1_pre_ctrl_s = b0_ac_r[M-W-2]; // aqui tengo la pendiente L-2 bit de control
+    assign b1_pre_w = b0_ac_r[L-3:0]; // Los L bits más bajos de M 
+    assign b1_pre_ctrl_s = b0_ac_r[L-2]; // aqui tengo la pendiente L-2 bit de control
 
     always_ff @(posedge clk) begin
       if(b1_pre_ctrl_s)
@@ -70,18 +70,18 @@ module dds_test #(
     end
     
     // b2
-    dds_test_rom dds_rom_sin_wave (.ic_addr(b1_pre_addr_r), 
+    dds_test_rom #(.ADDR_WIDTH(L), .DATA_WIDTH(W)) dds_rom_sin_wave (.ic_addr(b1_pre_addr_r), 
                    .clk(clk),
-                   .od_rom(b2_od_sin_wave_w)); //TODO: esta es cable cambiar w por s
+                   .od_rom(b2_od_sin_wave_s)); 
     
     // b3
     always_ff @(posedge clk) begin
-      b3_post_ctrl1_r <= b0_ac_r[M-W-1]; // Registra el Bit L-1 para el post procesado
+      b3_post_ctrl1_r <= b0_ac_r[L-1]; // Registra el Bit L-1 para el post procesado
       b3_post_ctrl_r2 <= b3_post_ctrl1_r; // esto registra
       if(b3_post_ctrl_r2) 
-          b3_od_sin_wave_r <= (~b2_od_sin_wave_w); // 
+          b3_od_sin_wave_r <= (~b2_od_sin_wave_s);  
         else
-          b3_od_sin_wave_r <= b2_od_sin_wave_w; // esto registra
+          b3_od_sin_wave_r <= b2_od_sin_wave_s; // esto registra
     end
 
     // b4
@@ -99,7 +99,7 @@ module dds_test #(
 
    always_ff @(posedge clk) begin
       if (b5_shift0_r) begin
-        b5_ROM_r <= {1'b1,{(W-1){1'b1}}}; // Si el bit de control es 1,el valor positivo max es <1
+        b5_ROM_r <= {1'b1,{(W-2){1'b0}},1'b1}; // Si el bit de control es 1,el valor positivo max es <1
       end else begin
         b5_ROM_r <= {1'b0,{(W-1){1'b1}}}; // Si el bit de control es 0, el valor más negativo es -1
       end
