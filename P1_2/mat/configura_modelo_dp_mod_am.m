@@ -11,7 +11,7 @@ m_am = 1*(1-2^-15); % AM modulation index (range [0,1[) ->NO CAMBIAR<-
 fc = 30;            % Carrier frequency (MHz)
 
 %% TEST CASES:
-test_case = 1
+test_case = 4;
 
 % List of test cases
 % 1 : fmod = 2 kHz

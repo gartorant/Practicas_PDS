@@ -10,7 +10,7 @@ cModel Technology
 dC:/Users/garto/Desktop
 vdds_test
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1771351590
+Z1 !s110 1771449850
 !i10b 1
 !s100 :UYfBO`S<?5l?c252nTT>1
 I5H9Xeg;<d5BoU67l66=a82
@@ -18,7 +18,7 @@ Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 !s105 dds_test_sv_unit
 S1
 Z4 dC:/PDS_FPGA/2026/Practicas_PDS/P1/sim
-Z5 w1770939383
+Z5 w1771448031
 Z6 8../src/dds_test.sv
 Z7 F../src/dds_test.sv
 L0 1
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1771351590.000000
+Z9 !s108 1771449850.000000
 Z10 !s107 ../src/dds_test.sv|
 Z11 !s90 -reportprogress|300|../src/dds_test.sv|
 !i113 1
@@ -73,14 +73,14 @@ Z15 8../tsb/dds_test_tsb.sv
 Z16 F../tsb/dds_test_tsb.sv
 L0 4
 R8
-Z17 !s108 1771351591.000000
-Z18 !s107 ../tsb/dds_test_tsb.sv|
-Z19 !s90 -reportprogress|300|../tsb/dds_test_tsb.sv|
+R9
+Z17 !s107 ../tsb/dds_test_tsb.sv|
+Z18 !s90 -reportprogress|300|../tsb/dds_test_tsb.sv|
 !i113 1
 R12
 Xdds_test_tsb_pkg
 R0
-!s110 1771351591
+R1
 !i10b 1
 !s100 LFWec0Q>EEZ]hVVn9NZ>Y3
 IRQ[gD9FY8I3482DfhQbFc2
@@ -118,8 +118,8 @@ R15
 R16
 L0 2
 R8
+R9
 R17
 R18
-R19
 !i113 1
 R12

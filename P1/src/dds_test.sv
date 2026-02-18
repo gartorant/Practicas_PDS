@@ -17,31 +17,31 @@ module dds_test #(
 
   /* DECLARACIONES ------------------------- */
   // b0 ACUMULADOR
-  logic [M-1:0] b0_ac_r;  // U[M,M]
+  logic [M-1:0] b0_ac_r;  // U[M,0]
   
   // b1 PRE PROCESADO
-  logic [L-3:0] b1_pre_s;     // U[L-2,L-2]
-  logic b1_pre_ctrl_s;        // bit
-  logic [L-3:0] b1_pre_addr_r;// U[L-2,L-2]
+  logic [L-3:0] b1_pre_s;       // U[L-2,0]
+  logic b1_pre_ctrl_s;          // bit
+  logic [L-3:0] b1_pre_addr_r;  // U[L-2,0]
   
   // b2 
-  logic [W-1:0] b2_od_sin_wave_s; // U[W,W]
+  logic [W-1:0] b2_od_sin_wave_s;   // U[W,0]
 
   // b3 post procesado
-  logic b3_post_ctrl1_r; // bit
-  logic b3_post_ctrl_2r; // bit
-  logic [W-1:0] b3_od_sin_wave_r; // U[W,W]
+  logic b3_post_ctrl1_r;            // bit
+  logic b3_post_ctrl_2r;            // bit
+  logic [W-1:0] b3_od_sin_wave_r;   // U[W,0]
 
   // b4 
-  logic [W-1:0]b4_shift0_r;  //U[W,W]
-  logic [W-1:0]b4_shift1_r;  //U[W,W] cambiar en numero en el shift
-  logic [W-1:0]b4_shift2_r;  //U[W,W]
+  logic [W-1:0]b4_shift0_r;  //U[W,0]
+  logic [W-1:0]b4_shift1_r;  //U[W,0] cambiar en numero en el shift
+  logic [W-1:0]b4_shift2_r;  //U[W,0]
   logic [W-1:0]b4_shift_r;
 
   // b5
-  logic b5_shift0_r;  // bit
-  logic b5_shift1_r;  // bit
-  logic [W-1:0]b5_ROM_r;  // bit
+  logic b5_shift0_r;        // bit
+  logic b5_shift1_r;        // bit
+  logic [W-1:0]b5_ROM_r;    // bit
 
   //b6
   logic b6_shift0_r;  //bit
