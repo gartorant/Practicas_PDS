@@ -7,12 +7,10 @@ module dp_mod_dds #(
     input         [M-1:0] id_p_ac,        // U[M,0]
     input                 ic_rst_ac,      // bit
     input                 ic_en_ac,       // bit
-    input                 ic_val_data,    // bit
     input                 clk,            // bit
     output signed [W-1:0] od_sqr_wave,    // S[W,W-1]
     output signed [W-1:0] od_ramp_wave,   // S[W,W-1]
     output signed [W-1:0] od_sin_wave,    // S[W,W-1]
-    output                oc_val_data     // bit
 );
 
   /* DECLARACIONES ------------------------- */
