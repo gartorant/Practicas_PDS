@@ -1,0 +1,386 @@
+\documentclass[parskip,a4paper,12pt]{article}
+\input{preambulo}
+\newcommand{\Practica}{Práctica P2}
+\newcommand{\Grupo}{Grupo X} %  
+\newcommand{\NombreUNO}{Apellidos1, Nombre1}
+\newcommand{\NombreDOS}{Apellidos2, Nombre2} %\shortstack{Apellidos, Nombre\\Apellidos, Nombre}
+\def\portada{1} % 1 ó 2 ó 3
+\graphicspath{{graficosP1/}}
+\newcommand{\fila}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\setcounter{tcb@cnt@enunciado}{9}
+\renewcommand{\tablename}{Tabla}
+\addtocounter{page}{-1}
+\startcontents[sections]
+\thispagestyle{empty}
+\input{portada}
+\clearpage
+\printmyminitoc
+
+
+
+
+\section{Descripción del módulo}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Breve explicación del bloque implementado indicando su funcionalidad y estructura interna. Se puede añadir (de apoyo a la explicación) una figura con el diagrama de bloques interno del modulo.
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  .d8888b.   d888   % 
+% d88P  Y88b d8888   % 
+% 888    888   888   % 
+% 888    888   888   % 
+% 888    888   888   % 
+% 888    888   888   % 
+% Y88b  d88P   888   % 
+%  "Y8888P"  8888888 % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Interfaz}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Incluir las tablas en las que se definan el interfaz, sus formatos y sus parámetros. 
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% TABLA DEL INTERFAZ (4 COLUMNAS) %%%%%%%%%%%%%%%%%%%%%%%%
+\input{tabla_4col}
+% Definir los anchos de columna de la tabla
+\def\colUNO{2cm}
+\def\colDOS{1cm}
+\def\colTRES{2.0cm}
+\def\colCUATRO{10cm}
+
+\begin{table}[H]
+    \caption{Interfaz del módulo  DP\_mod}
+    \label{tab:interfaz}
+\gdef\cabecera{\fila{NOMBRE}{TIPO}{FORMATO}{DESCRIPCIÓN}}
+\noindent\begin{mitabla}
+% COMPLETAR FILAS. AÑADA LAS QUE NECESITE
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\fila{}{}{}{} 
+\end{mitabla}
+\end{table}
+
+%  .d8888b.   .d8888b.  % 
+% d88P  Y88b d88P  Y88b % 
+% 888    888        888 % 
+% 888    888      .d88P % 
+% 888    888  .od888P"  % 
+% 888    888 d88P"      % 
+% Y88b  d88P 888"       % 
+%  "Y8888P"  888888888  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Recursos hardware}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+El objetivo de esta sección es que el alumno sea capaz de identificar si los recursos obtenidos en la implementación son coherentes con los esperables para el circuito realizado.
+
+Se deberán incluir las siguientes partes: 
+\begin{itemize}
+\item \textbf{Estimación de recursos:} Un breve desglose de la estimación de recursos  del dispositivo FPGA que se requieren para implementar el módulo, indicando la cantidad de recursos asignados a cada bloque de su diseño. El resultado final se mostrará en una tabla. En esta práctica solo hay que indicar el número de LEs configurados en modo normal, LEs en modo aritmético, los multiplicadores de 18x18 bits, los FFs y memorias M9K. 
+
+\item \textbf{Resultados obtenidos:} Una captura del resumen de recursos obtenidos con la herramienta Quartus tras la etapa de emplazamiento y rutado (Fitter), que se muestra en el report ``Resource Usage Summary''.  
+
+\item \textbf{Análisis del resultado:} Un breve análisis de si los resultados obtenidos son coherentes con la estimación de recursos realizada. El análisis se realizará en base a la comparación entre lo estimado y obtenido en Quartus. Si hay muchas discrepancias con los recursos obtenidos, indicar razonadamente las causas de dicha discrepancia.
+\end{itemize}
+
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\underline{\textbf{Estimación de recursos:}}
+
+Los recursos hardware necesarios para implementar el bloque DP\_mod son los siguientes:
+\begin{itemize}
+\item \textbf{FFs:} 
+
+\item \textbf{LEs normales:} 
+
+\item \textbf{LEs aritméticos:} 
+
+\item \textbf{Mults 18x18:} 
+
+\item \textbf{M9Ks:} 
+\end{itemize}
+
+A continuación se muestra la tabla con el resumen de los recursos:
+
+% TABLA RECURSOS (3 COLUMNAS) %%%%%%%%%%%%%%%%%%%%%%%%
+\input{tabla_2col}
+% Definir los anchos de columna de la tabla
+\def\colUNO{3cm}
+\def\colDOS{5.5cm}
+\def\colTRES{5.5cm}
+%\def\colCUATRO{10cm}
+
+\begin{table}[H]
+\centering
+    \caption{Recursos hardware}
+    \label{tab:recursos_HW}
+\gdef\cabecera{\fila{RECURSO}{NÚMERO OBTENIDO}}
+\noindent\begin{mitabla}
+% COMPLETAR FILAS
+\fila{FFs}{}
+\fila{LEs-normal}{}  
+\fila{LEs-aritméticos}{}  
+\fila{Mults 18x18}{}
+\fila{M9Ks}{}
+\end{mitabla}
+\end{table}
+
+\underline{\textbf{Resultados obtenidos:}}
+% captura del resumen de recursos obtenidos con la herramienta Quartus tras la etapa de emplazamiento y rutado (Fitter), que se muestra en el report ``Resource Usage Summary''.
+
+\underline{\textbf{Análisis del resultado:}}
+% breve análisis de si los resultados obtenidos
+
+
+
+%  .d8888b.   .d8888b.  % 
+% d88P  Y88b d88P  Y88b % 
+% 888    888      .d88P % 
+% 888    888     8888"  % 
+% 888    888      "Y8b. % 
+% 888    888 888    888 % 
+% Y88b  d88P Y88b  d88P % 
+%  "Y8888P"   "Y8888P"  % 
+%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{Frecuencia de operación}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}
+
+El objetivo de esta sección es que el alumno sea capaz de identificar  el camino crítico del módulo: el que condiciona su frecuencia máxima de funcionamiento.  
+\begin{itemize}
+    \item Obtenga la frecuencia máxima de operación del módulo implementado en el dispositivo usando la herramienta TimeQuest Timing Analyzer de Quartus e indique dónde se encuentra el camino crítico del circuito. En la tabla aparece un ejemplo de cómo debe indicar el camino crítico: siempre debe indicar desde qué registro se inicia y en qué registro finaliza.
+    \item Realice un breve análisis de si es coherente que el camino crítico sea el obtenido por la herramienta TimeQuest o si cree que debería estar en otra parte del circuito.
+\end{itemize}
+
+Para realizar el análisis debe tener en cuenta que el camino crítico es el camino entre dos registros con mayor retardo y los retardos en el dispositivo FPGA los producen la lógica combinacional (LUTs) y el rutado. Si un camino tiene más lógica combinacional (más profundidad de lógica: la señal pasa por más LUTs en cascada) generará más retardo debido a la lógica. Si al emplazarse los recursos de un camino concreto (registros y lógica) más separados dentro del chip, esto producirá más retardo por rutado.  
+
+\end{enunciado}
+
+% TABLA DEL Fmax (2 COLUMNAS) %%%%%%%%%%%%%%%%%%%%%%%%
+\input{tabla_2col}
+% Definir los anchos de columna de la tabla
+\def\colUNO{3cm}
+\def\colDOS{12cm}
+%\def\colTRES{2.0cm}
+%\def\colCUATRO{10cm}
+
+\begin{table}[H]
+    \caption{Frecuencia de reloj y camino crítico}
+    \label{tab:frec_clk}
+\gdef\cabecera{\fila{$f_{clk} $ (MHz)}{CAMINO CRÍTICO}}
+\noindent\begin{mitabla}
+% COMPLETAR FILAS
+\fila{}{} 
+\end{mitabla}
+\end{table}
+
+
+\underline{\textbf{Análisis del resultado:}}
+
+El camino crítico obtenido es coherente por estas razones ...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%  .d8888b.      d8888  % 
+% d88P  Y88b    d8P888  % 
+% 888    888   d8P 888  % 
+% 888    888  d8P  888  % 
+% 888    888 d88   888  % 
+% 888    888 8888888888 % 
+% Y88b  d88P       888  % 
+%  "Y8888P"        888  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Verificación}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Resultados de la verificación al excitarlo con diferentes entradas para demostrar su completo funcionamiento. Solo se incluirá:
+\begin{itemize}
+    \item La lista de las pruebas realizadas, que debe coincidir con los casos de test que se hayan configurado en el script de simulación de Matlab.
+    \item Las capturas de las formas de onda y el resumen (mostrado en la consola de Modelsim) de la simulación realizada de un máximo de 2 casos, mostrando claramente el comportamiento del circuito y que no existen errores al compararlo con el modelo de Simulink.
+\end{itemize}
+
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+El módulo ha funcionado correctamente. Su funcionamiento se ha verificado con las siguientes pruebas:
+\begin{enumerate}
+    \item 
+    \item 
+    \item
+\end{enumerate}
+
+A continuación, se describen dos de los escenarios de test enumerados anteriormente:
+\subsection{Caso 1: }
+
+%   \begin{center}
+%   \includegraphics[width=19cm]{XXXXX.png}
+%   \end{center}
+
+\subsection{Caso 2}
+
+%  .d8888b.  888888888  % 
+% d88P  Y88b 888        % 
+% 888    888 888        % 
+% 888    888 8888888b.  % 
+% 888    888      "Y88b % 
+% 888    888        888 % 
+% Y88b  d88P Y88b  d88P % 
+%  "Y8888P"   "Y8888P"  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Conclusiones de la práctica. Valore el grado de cumplimiento de los objetivos de la práctica y el grado de coherencia entre los valores estimados de área y los obtenidos, así como de la frecuencia máxima de funcionamiento.  
+\end{enunciado}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  .d8888b.   .d8888b.  % 
+% d88P  Y88b d88P  Y88b % 
+% 888    888 888        % 
+% 888    888 888d888b.  % 
+% 888    888 888P "Y88b % 
+% 888    888 888    888 % 
+% Y88b  d88P Y88b  d88P % 
+%  "Y8888P"   "Y8888P"  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Ficheros entregados}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Lea el documento \href{https://gised.webs.upv.es/pds_fpga/PDS_FPGA_practicas.pdf} {desarrollo y entrega de prácticas}  e indique cómo se han nombrado los ficheros que se indican en la tabla.  En esta práctica esta tabla está por completar, para que sirva de referencia para las siguientes prácticas.
+
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Los autores de la memoria confirman que han entregado los ficheros siguientes, siguiendo las pautas indicadas:
+% TABLA DE PARÁMTROS (2 COLUMNAS) %%%%%%%%%%%%%%%%%%%%%%%%
+\input{tabla_2col}
+% Definir los anchos de columna de la tabla
+\def\colUNO{10cm}
+\def\colDOS{4cm}
+
+\begin{table}[H]
+    \centering
+    %\caption{Entregables de la práctica E1}
+    \label{tab:entregables}
+\gdef\cabecera{\fila{FICHERO}{NOMBRE}}
+\noindent\begin{mitabla}
+% COMPLETAR FILAS. AÑADA LAS QUE NECESITE
+\fila{Memoria de prácticas}{Memoria\_P2\_Gx.pdf}
+\fila{Entrega de los ficheros de prácticas}{Proy\_sim\_P2\_Gx.zip}
+\fila{Proyecto Modelsim}{}
+\fila{Fichero .do}{dp\_mod\_tsb.do}
+\fila{Fichero .tcl}{dp\_mod\_tsb.tcl}
+\fila{Proyecto Quartus}{}
+\end{mitabla}
+\end{table}
+
+%  .d8888b.  8888888888 % 
+% d88P  Y88b       d88P % 
+% 888    888      d88P  % 
+% 888    888     d88P   % 
+% 888    888  88888888  % 
+% 888    888   d88P     % 
+% Y88b  d88P  d88P      % 
+%  "Y8888P"  d88P       % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{ANEXO 1: Código HDL del módulo dp\_mod}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Incluir un esquema de la división en bloques realizada y el código Verilog de los módulos de la práctica. El código debe ser legible, ordenado, bien tabulado y comentado. El código debe seguir las pautas indicadas en el documento  \href{https://gised.webs.upv.es/pds_fpga/PDS_FPGA_practicas.pdf} {desarrollo y entrega de prácticas}. 
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minted}[fontsize=\footnotesize,obeytabs=true,tabsize=2]{verilog}
+module dp_mod
+	(
+	input signed [15:0] id_data,	// S[16,15] 
+	input [23:0] id_frec_por,		// U[24,24]
+	input [15:0] id_im_am,			// U[16,15]
+	input [15:0] id_im_fm,			// U[16,16]
+	input ic_fm_am, 				// Control modo fm/am
+	input ic_rst,					// rst sincrono activo a 1
+	input ic_val_data,				
+	input clk,
+	output signed [15:0] od_data,	// S[16,15]
+	output oc_val_data
+	);
+	
+/* DECLARACIONES ----------------------- */
+
+/* DESCRIPCION ------------------------- */	
+
+/* ASIGNACION SALIDAS ------------------ */
+
+endmodule 
+\end{minted}
+
+
+
+%  .d8888b.   .d8888b.  % 
+% d88P  Y88b d88P  Y88b % 
+% 888    888 Y88b. d88P % 
+% 888    888  "Y88888"  % 
+% 888    888 .d8P""Y8b. % 
+% 888    888 888    888 % 
+% Y88b  d88P Y88b  d88P % 
+%  "Y8888P"   "Y8888P"  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{ANEXO 2: Código HDL del banco de pruebas dp\_mod\_tsb}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enunciado}{}{}%
+Incluir el código Verilog del banco de pruebas realizado.
+\end{enunciado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minted}[fontsize=\footnotesize,obeytabs=true,tabsize=2]{verilog}
+`timescale 1ns/1ps
+
+module dp_mod_tsb();
+
+
+endmodule 
+
+
+\end{minted}
+
+%  .d8888b.   .d8888b.  % 
+% d88P  Y88b d88P  Y88b % 
+% 888    888 888    888 % 
+% 888    888 Y88b. d888 % 
+% 888    888  "Y888P888 % 
+% 888    888        888 % 
+% Y88b  d88P Y88b  d88P % 
+%  "Y8888P"   "Y8888P"  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}

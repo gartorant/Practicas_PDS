@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n+no}{`timescale}\PYG{+w}{ }\PYG{l+m+mh}{1}\PYG{n}{ns}\PYG{o}{/}\PYG{l+m+mh}{1}\PYG{n}{ps}
+
+\PYG{k}{module}\PYG{+w}{ }\PYG{n}{dp\PYGZus{}mod\PYGZus{}tsb}\PYG{p}{();}
+
+
+\PYG{k}{endmodule}
+
+
+\end{MintedVerbatim}

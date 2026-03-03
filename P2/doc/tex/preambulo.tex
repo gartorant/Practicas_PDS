@@ -1,0 +1,181 @@
+\usepackage{tikz,pgfplots}
+\pgfplotsset{temporal/.style={mark size=1pt,/pgfplots/ylabel={Amplitud},/pgfplots/xlabel={\# muestra},axis background/.style={fill=yellow!10},/pgfplots/enlargelimits=true}}
+\pgfplotsset{frecuencial/.style={mark size=1pt,/pgfplots/xlabel={k (frecuencia)},/pgfplots/ylabel={Magnitud},axis background/.style={fill=blue!10},/pgfplots/enlargelimits=true}}
+\usetikzlibrary{shadows.blur}
+\usepackage{titletoc} %tabla de contenidos (printcontents)
+\usepackage[utf8]{inputenc}
+\usepackage[text={6in,9in},centering]{geometry}
+\usetikzlibrary{calc,shadows,shadings}
+\usepackage{lipsum}
+\usepackage[spanish]{babel} %Figura en lugar de Figure
+\usepackage{droidsans}
+\usepackage{fancyhdr}
+\usepackage{svgcolor}
+\usepackage{xcolor}
+\usepackage{float} %forzar ubicación de figuras
+\usepackage{listings} %Código Matlab formateado
+\usepackage{textcomp} %Para listings
+\usepackage{amsmath} %para align
+\usepackage{amssymb} %mathb
+\usepackage[colorlinks]{hyperref}
+\newcommand{\matlab}{\textsc{matlab}\xspace}
+\usepackage{pifont} %ding
+\newcommand{\flec}{\ding{224}}
+\usepackage{xspace}
+\usepackage{color,soul}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Ejercicios
+%\newtheorem{ejercicio}{Ejercicio}
+
+\usepackage{amsthm,thmtools,xcolor}
+\usepackage[skins,breakable,theorems]{tcolorbox}
+
+% \declaretheoremstyle[
+%   headfont=\color{colorejercicio!50!black}\normalfont\bfseries,
+%   bodyfont=\color{colorejercicio}\normalfont\itshape,
+% ]{colored}
+
+% \declaretheorem[
+%   style=colored,
+%   name=Ejercicio,
+% ]{ejercicio}
+\newtcbtheorem{enunciado}{ENUNCIADO}%
+{theorem style=change apart,enhanced,arc=0mm,outer arc=0mm,breakable,theorem name and number,
+boxrule=0mm,toprule=1mm,bottomrule=1mm,left=1mm,right=1mm,
+titlerule=0mm,toptitle=0mm,bottomtitle=1mm,top=0mm,
+colframe=colorO,colback=azulclaro!1!white,coltitle=purple,
+title style={top color=white,bottom color=white,
+middle color=white},
+underlay unbroken and last={\draw[line width=2mm,draw=white] ($(frame.south)+(0,0.65mm)$) -- +(1.65cm,0) -- +(-1.65cm,0); \node at ($(frame.south)+(0,0.65mm)$) (){\tailpiecerule};},
+fonttitle=\bfseries\sffamily\normalsize,fontupper=\normalsize\itshape, 
+}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgfornament}
+\usepackage{fourier, fourier-orns}
+\newcommand\tailpiecerule{\tikzset{pgfornamentstyle/.style={scale=.375}}\centerline{%\hrulefill\raisebox{-0.4ex}{~\color{NavyBlue}\decofourleft\,\decofourright~}\hrulefill
+    \color{colorO}\expandafter\pgfornament\expandafter{83}}}%LightSteelBlue!50!white
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{miscolores}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%COLORES DE PORTADA Y ENCABEZADOS/PIES
+\newif\ifcolores
+%\colorestrue 
+\coloresfalse
+\ifcolores
+\definecolor{azuloscuro}{rgb}{0.1,0.15,0.3}%\colorlet{azuloscuro}{blue!30!black}%24 42 75
+\definecolor{azulclaro}{rgb}{0.15,0.3,0.5}%\colorlet{azulclaro}{blue!60!black}%42 73 128
+\colorlet{textoA}{yellow!50!white}
+\colorlet{textoB}{white}
+\colorlet{colorejercicio}{red}
+\else
+\colorlet{azuloscuro}{colorBFILL}
+\colorlet{azulclaro}{white}
+\colorlet{textoA}{black}
+\colorlet{textoB}{gray}
+\colorlet{colorejercicio}{gray}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%CABECERAS Y PIES
+\renewcommand{\headrulewidth}{0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{%
+\begin{tikzpicture}[overlay, remember picture]%
+    \fill[azuloscuro] (current page.north west) rectangle ($(current page.north east)+(0,-1in)$);
+    \node[anchor=north west, text=white, font=\Large\scshape, minimum size=1in, inner xsep=5mm,minimum width=\textwidth] at (current page.north west) (gris){\color{textoA}\parbox{1.3\textwidth}{Procesado de Señal en FPGAs \hfill\Practica}};
+    \draw[thick] ($(current page.north east)+(0,-1in)$) -- ($(current page.north west)+(0,-1in)$);
+\end{tikzpicture}
+}
+\fancyfoot[CE]{
+    \begin{tikzpicture}[overlay, remember picture]%
+    \fill[azuloscuro] (current page.south west) rectangle ($(current page.south east)+(0,.5in)$);
+    \node[anchor=south west, text=white, font=\Large, minimum size=.5in] at (current page.south west) {\color{textoA}\thepage};
+    \node[anchor=south, text=white, font=\large, minimum size=.5in] at (current page.south) {\color{textoA}\leftmark};
+    \node[anchor=south east, text=white, font=\large, minimum size=.5in, inner xsep=5mm] at (current page.south east) {\color{textoA}\the\year};
+        \draw[thick] ($(current page.south east)+(0,0.5in)$) -- ($(current page.south west)+(0,0.5in)$);
+\end{tikzpicture}
+}
+\fancyfoot[CO]{
+    \begin{tikzpicture}[overlay, remember picture]%
+    \fill[azuloscuro] (current page.south west) rectangle ($(current page.south east)+(0,.5in)$);
+    \node[anchor=south west, text=white, font=\large, minimum size=.5in, inner xsep=5mm] at (current page.south west) {\color{textoA}\the\year};
+    \node[anchor=south, text=white, font=\large, minimum size=.5in] at (current page.south) {\color{textoA}\leftmark};
+    \node[anchor=south east, text=white, font=\Large, minimum size=.5in] at (current page.south east) {\color{textoA}\thepage};
+    \draw[thick] ($(current page.south east)+(0,0.5in)$) -- ($(current page.south west)+(0,0.5in)$);
+\end{tikzpicture}
+}
+\setlength{\headheight}{12pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{Matlab}{
+language=Matlab,
+showstringspaces=false,
+frame=none,
+tabsize=2,
+backgroundcolor=\color{lightgrey!50!white},
+caption=,
+columns=fullflexible,
+upquote=true,
+keywordstyle={\bfseries\color{blue}},
+}	
+\lstset{emph={%  
+    ones, randi,ind2sub,sub2ind,fir1,firls,filterDesigner,audioread,spectrogram%
+    },emphstyle={\bfseries\color{blue}}%
+}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Tabla de contenidos
+\usepackage{tocloft}
+\newcommand{\printmyminitoc}{\section*{Índice}\noindent\begin{tikzpicture}
+   \hypersetup{linkcolor=textoB}
+    \node[rounded corners,align=left,fill=azulclaro, blur shadow={shadow blur steps=5}, inner sep=5mm,draw=azuloscuro]{%
+        \color{textoB}%
+        \begin{minipage}{\textwidth}%minipage trick
+        \printcontents[sections]{}{1}{}
+        \end{minipage}};
+    \end{tikzpicture}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}  % for section
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{minted}
+\usemintedstyle{borland}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{sectsty}
+\definecolor{azul}{rgb}{0.2,0.4,0.6}
+\chapterfont{\color{azul}}  % sets colour of chapters
+\sectionfont{\color{azul}}  % sets colour of sections
+\subsectionfont{\color{azul}}  % sets colour of sections
+\subsubsectionfont{\color{azul}}  % sets colour of sections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{respuesta}{\Note{\thepage}}{}
+\usepackage{zref-savepos}
+\makeatother
+\def\Note#1{%
+\zsavepos{#1}%
+\begin{tikzpicture}[remember picture,overlay]%
+\coordinate (here) at (0,0cm);%
+\draw[red] (current page.south west |- here)%
+node[right,scale=2,lightgray,xshift=-0.5cm]{\makebox[1.2cm][r]{E\arabic{tcb@cnt@ejercicio}}};%
+\end{tikzpicture}%
+\ignorespaces%
+}
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Silencia el error de dollar sign meaning
+\makeatletter
+\global\let\tikz@ensure@dollar@catcode=\relax
+\makeatother
+%%
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLAS
+\usepackage{ifthen}
+\newenvironment{mitabla}{\begin{tikzpicture}
+\node[coordinate] at (0,0)(origen){};
+\node at (0,0) (c0){};
+\tikzset{estilo/.style={fill=lightgray!20}}
+\cabecera
+\tikzset{estilo/.style={fill=white}}
+}{\end{tikzpicture}}

@@ -1,0 +1,23 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{module}\PYG{+w}{ }\PYG{n}{dp\PYGZus{}mod}
+\PYG{+w}{	}\PYG{p}{(}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{k}{signed}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mh}{15}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{id\PYGZus{}data}\PYG{p}{,}\PYG{+w}{	}\PYG{c+c1}{// S[16,15]}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mh}{23}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{id\PYGZus{}frec\PYGZus{}por}\PYG{p}{,}\PYG{+w}{		}\PYG{c+c1}{// U[24,24]}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mh}{15}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{id\PYGZus{}im\PYGZus{}am}\PYG{p}{,}\PYG{+w}{			}\PYG{c+c1}{// U[16,15]}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mh}{15}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{id\PYGZus{}im\PYGZus{}fm}\PYG{p}{,}\PYG{+w}{			}\PYG{c+c1}{// U[16,16]}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{n}{ic\PYGZus{}fm\PYGZus{}am}\PYG{p}{,}\PYG{+w}{ 				}\PYG{c+c1}{// Control modo fm/am}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{n}{ic\PYGZus{}rst}\PYG{p}{,}\PYG{+w}{					}\PYG{c+c1}{// rst sincrono activo a 1}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{n}{ic\PYGZus{}val\PYGZus{}data}\PYG{p}{,}\PYG{+w}{				}
+\PYG{+w}{	}\PYG{k}{input}\PYG{+w}{ }\PYG{n}{clk}\PYG{p}{,}
+\PYG{+w}{	}\PYG{k}{output}\PYG{+w}{ }\PYG{k}{signed}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mh}{15}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}\PYG{+w}{ }\PYG{n}{od\PYGZus{}data}\PYG{p}{,}\PYG{+w}{	}\PYG{c+c1}{// S[16,15]}
+\PYG{+w}{	}\PYG{k}{output}\PYG{+w}{ }\PYG{n}{oc\PYGZus{}val\PYGZus{}data}
+\PYG{+w}{	}\PYG{p}{);}
+\PYG{+w}{	}
+\PYG{c+cm}{/* DECLARACIONES \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} */}
+
+\PYG{c+cm}{/* DESCRIPCION \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} */}\PYG{+w}{	}
+
+\PYG{c+cm}{/* ASIGNACION SALIDAS \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{} */}
+
+\PYG{k}{endmodule}
+\end{MintedVerbatim}
