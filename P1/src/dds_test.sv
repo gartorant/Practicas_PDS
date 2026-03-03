@@ -1,7 +1,7 @@
 module dds_test #(
-    parameter M = 24,  // DDS accumulator wordlength
+    parameter M = 27,  // DDS accumulator wordlength
     parameter L = 15,  // DDS phase truncation wordlength
-    parameter W = 16
+    parameter W = 14
 )  // DDS ROM wordlength
 (
     input         [M-1:0] id_p_ac,        // U[M,0]
