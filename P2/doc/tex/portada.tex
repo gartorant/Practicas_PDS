@@ -1,0 +1,44 @@
+
+\ifnum\portada=1
+\begin{tikzpicture}[overlay,remember picture]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fondo y logo UPV
+\fill[shading=radial,inner color=azulclaro,outer color=azuloscuro] (current page.south west) rectangle (current page.north east);
+\fill[bottom color=azuloscuro, top color=azulclaro!50!white,fill=none,draw=none] ($(current page.south west)+(7.5cm,0)$) to[out=15,in=185] ($(current page.south east)+(0,2.5cm)$) -- (current page.south east) -- cycle;
+\node[anchor=south] at ($(current page.south)+(0,0.1)$) (){\includegraphics[scale=2]{marca_UPV_principal_color2.pdf}};
+\ifcolores
+\fill[shading=radial,inner color=azulclaro,outer color=azuloscuro,opacity=0.6] (current page.south west) rectangle (current page.north east);
+\fi
+\node[opacity=0.2] at ($(current page)$){\includegraphics[scale=1.2]{patron.pdf}};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Rectas horizontales
+\fill[shading=radial,inner color=colorAFILL,outer color=azuloscuro,draw=none,fill=none] ($(current page.south west)+(0,2cm)$) rectangle ($(current page.south east)+(0,2.25cm)$);
+\fill[shading=radial,inner color=colorAFILL,outer color=azuloscuro,draw=none,fill=none] ($(current page.north west)+(0,-2cm)$) rectangle ($(current page.north east)+(0,-2.25cm)$);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Textos
+\node[scale=5] at ($(current page.north)!0.382!(current page.south)$) (prac){\color{textoA}\selectfont \textsc{\shortstack[c]{\Practica\\\Grupo}}};
+\node[anchor=south west,scale=5] at (prac.north west) {\selectfont \color{azul}\textbf{PDS-FPGAs}};
+\node[anchor=east,scale=2] at ($(current page.south east)+(-0.5,8)$) {\color{textoB}\selectfont \shortstack[r]{\NombreUNO\\\NombreDOS}};
+\end{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\else\ifnum\portada=2
+\begin{tikzpicture}[overlay,remember picture]
+\definecolor{fondo}{rgb}{0,0.1098,0.1333} %0 28 34
+\definecolor{fondo2}{rgb}{0,0.0784,0.0941} %0 20 24
+\fill[fill=fondo] (current page.north west) rectangle (current page.east);
+\fill[fill=fondo2] (current page.west) rectangle (current page.south east);
+\node[] at ($(current page.south)!1/1.6!(current page.north)$) {\includegraphics[width=\paperwidth]{prac1.png}};
+\node[anchor=south] at ($(current page.south)+(0,0.1)$) (marca){\includegraphics[scale=2]{marca_UPV_principal_color2.pdf}};
+\fill[fill=fondo2,opacity=0.9] ($(marca.north west)$) rectangle (current page.south east);
+\node[anchor=east,scale=2] at ($(current page.south)!0.236!(current page.north)+(8.5,0)$) {\color{white}\selectfont \shortstack[l]{\NombreUNO\\\NombreDOS}};
+\end{tikzpicture}  
+\else
+\begin{tikzpicture}[overlay,remember picture]
+\fill[fill=black] (current page.north west) rectangle (current page.east);
+\fill[fill=black] (current page.west) rectangle (current page.south east);
+\node[] at ($(current page.south)!1/1.6!(current page.north)$) {\includegraphics[width=\paperwidth]{prac1b.png}};
+\node[anchor=south] at ($(current page.south)+(0,0.1)$) (marca){\includegraphics[scale=2]{marca_UPV_principal_color2.pdf}};
+\fill[fill=black,opacity=0.85] (marca.north west) rectangle (current page.south east);
+\node[anchor=east,scale=2] at ($(current page.south)!0.236!(current page.north)+(8.5,0)$) {\color{white}\selectfont \shortstack[l]{\NombreUNO\\\NombreDOS}};
+\end{tikzpicture}  
+\fi\fi

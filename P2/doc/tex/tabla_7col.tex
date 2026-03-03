@@ -1,0 +1,8 @@
+\renewcommand{\fila}[7]{
+\node[minimum height=2em,minimum width=1cm,anchor=north west,draw,outer sep=0pt,estilo] at (c0.south west) (c0) {\parbox{\colUNO}{\ifthenelse{\equal{\unexpanded{#1}}{}}{\ }{#1}}};
+\node[minimum height=2em,minimum width=1cm,anchor=south west,draw,outer sep=0pt,estilo] at (c0.south east) (c1) {\parbox[c]{\colDOS}{\ifthenelse{\equal{\unexpanded{#2}}{}}{\ }{#2}}}; 
+\node[minimum height=2em,minimum width=1cm,anchor=south west,draw,outer sep=0pt,estilo] at (c1.south east) (c2) {\parbox[c]{\colTRES}{\ifthenelse{\equal{\unexpanded{#3}}{}}{\ }{#3}}};
+\node[minimum height=2em,minimum width=1cm,anchor=south west,draw,outer sep=0pt,estilo] at (c2.south east) (c3) {\parbox[c]{\colCUATRO}{\ifthenelse{\equal{\unexpanded{#4}}{}}{\ }{#4}}};
+\node[minimum height=2em,minimum width=1cm,anchor=south west,draw,outer sep=0pt,estilo] at (c3.south east) (c4) {\parbox[c]{\colCINCO}{\ifthenelse{\equal{\unexpanded{#5}}{}}{\ }{#5}}};
+\node[minimum height=2em,minimum width=1cm,anchor=south west,draw,outer sep=0pt,estilo] at (c4.south east) (c5) {\parbox[c]{\colSEIS}{\ifthenelse{\equal{\unexpanded{#6}}{}}{\ }{#6}}};
+\node[minimum height=2em,minimum width=1cm,anchor=south west,draw,outer sep=0pt,estilo] at (c5.south east) (c6) {\parbox[c]{\colSIETE}{\ifthenelse{\equal{\unexpanded{#7}}{}}{\ }{#7}}};}

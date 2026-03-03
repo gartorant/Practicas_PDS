@@ -1,0 +1,55 @@
+
+% #####  Color Palette by Paletton.com
+% #####  Palette URL: http://paletton.com/#uid=2370u0kllllb9vZgfqEqrg1vxaH
+
+
+% *** Primary color:
+
+%    shade 0 = #267158 = rgb( 38,113, 88) = rgba( 38,113, 88,1) = rgb0(0.149,0.443,0.345)
+%    shade 1 = #6FAA96 = rgb(111,170,150) = rgba(111,170,150,1) = rgb0(0.435,0.667,0.588)
+%    shade 2 = #468D76 = rgb( 70,141,118) = rgba( 70,141,118,1) = rgb0(0.275,0.553,0.463)
+%    shade 3 = #0F553E = rgb( 15, 85, 62) = rgba( 15, 85, 62,1) = rgb0(0.059,0.333,0.243)
+%    shade 4 = #013926 = rgb(  1, 57, 38) = rgba(  1, 57, 38,1) = rgb0(0.004,0.224,0.149)
+
+% *** Complement color:
+
+%    shade 0 = #AA5F39 = rgb(170, 95, 57) = rgba(170, 95, 57,1) = rgb0(0.667,0.373,0.224)
+%    shade 1 = #FFC4A6 = rgb(255,196,166) = rgba(255,196,166,1) = rgb0(1,0.769,0.651)
+%    shade 2 = #D48D69 = rgb(212,141,105) = rgba(212,141,105,1) = rgb0(0.831,0.553,0.412)
+%    shade 3 = #803A16 = rgb(128, 58, 22) = rgba(128, 58, 22,1) = rgb0(0.502,0.227,0.086)
+%    shade 4 = #551E01 = rgb( 85, 30,  1) = rgba( 85, 30,  1,1) = rgb0(0.333,0.118,0.004)
+
+%
+\definecolor{colorO}{HTML}{051F37}
+%\definecolor{colorO}{rgb}{0.004,0.224,0.149}%Verde oscuro
+%Negro y gris claro
+\definecolor{colorB}{rgb}{0,0,0}
+\colorlet{colorBFILL}{colorB!15}
+%Verde 
+\definecolor{colorA}{HTML}{1334A0}
+%\definecolor{colorA}{rgb}{0.059,0.333,0.243}%0,0.3,0.3}
+%\definecolor{colorAFILL}{rgb}{0.435,0.667,0.588}%\colorlet{colorAFILL}{colorA!10}
+\colorlet{colorAFILL}{colorA!10}
+\colorlet{shadecolor}{colorAFILL}
+%Color complementario (crema-rojo)
+\definecolor{colorC}{rgb}{0.502,0.227,0.086}%{0.5412,0.5176,0.4941}
+%\definecolor{colorCFILL}{rgb}{1,0.769,0.651}%0.9098,0.8588,0.7647}
+\definecolor{colorCFILL}{rgb}{0.9098,0.8588,0.7647}
+%Otro verde
+\definecolor{colorD}{HTML}{496A8A}
+%\definecolor{colorD}{rgb}{0.149,0.443,0.345}%{0.322 ,   0.57  ,  0.563}
+\colorlet{colorDFILL}{colorD!10}
+%Rojo oscuro
+\definecolor{colorE}{rgb}{0.333,0.118,0.004}
+%\letcolor{colorE}{purple}
+\definecolor{colorEFILL}{rgb}{0.831,0.553,0.412}
+\colorlet{colorE}{purple}
+%\colorlet{colorEFILL}{purple!10}
+
+\tikzstyle{freecell}=[fill=colorAFILL,draw=colorA]
+\tikzstyle{freestruct}=[fill=colorBFILL,draw=colorB]
+\tikzstyle{occupiedcell}=[fill=colorBFILL,draw=colorD]
+\tikzstyle{padding}=[fill=colorBFILL,draw=colorB]
+\tikzstyle{highlight}=[draw=colorE,text=colorE]
+
+%x\setbeamercolor{frametitle}{bg=colorO}
