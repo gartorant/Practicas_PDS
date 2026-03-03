@@ -32,23 +32,6 @@ module dp_mod_dds #(
   logic b3_post_ctrl_2r;            // bit
   logic [W-1:0] b3_od_sin_wave_r;   // U[W,0]
 
-  // b4 
-  logic [W-1:0]b4_shift0_s;  //U[W,0]
-  logic [W-1:0]b4_shift1_r;  //U[W,0] cambiar en numero en el shift
-  logic [W-1:0]b4_shift2_r;  //U[W,0]
-  logic [W-1:0]b4_shift_r;
-
-  // b5
-  logic b5_shift0_r;        // bit
-  logic b5_shift1_r;        // bit
-  logic [W-1:0]b5_ROM_r;    // bit
-
-  //b6
-  logic b6_shift0_r;  //bit
-  logic b6_shift1_r;  //bit
-  logic b6_shift2_r;  //bit
-  logic b6_shift3_r;  //bit
-  logic b6_val_data_r; // bit
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
   always_ff @(posedge clk)
@@ -84,45 +67,12 @@ module dp_mod_dds #(
           b3_od_sin_wave_r <= b2_od_sin_wave_s; // esto registra
     end
 
-    // b4
-    assign b4_shift0_s = b0_ac_r[M-1:M-W]; // los W bits más altos de M; NO REGISTRA
-    always_ff @(posedge clk) begin
-      b4_shift1_r <= b4_shift0_s;
-      b4_shift2_r <= b4_shift1_r;
-      b4_shift_r  <= b4_shift2_r;
-    end
-    
-    // b5
-    always_ff @(posedge clk ) begin
-      b5_shift0_r <= b0_ac_r[M-1];
-      b5_shift1_r <= b5_shift0_r;
-    end
 
-   always_ff @(posedge clk) begin
-      if (b5_shift1_r) begin
-        b5_ROM_r <= {1'b1,{(W-2){1'b0}},1'b1}; // Si el bit de control es 1,el valor positivo max es <1
-      end else begin
-        b5_ROM_r <= {1'b0,{(W-1){1'b1}}}; // Si el bit de control es 0, el valor más negativo es -1
-      end
-   
-    end
-
-    // b6
-    assign b6_shift0_r = ic_val_data;
-    always_ff @(posedge clk ) begin
-      // todo falta un registro o uno completo de 4
-      b6_shift1_r <= b6_shift0_r;
-      b6_shift2_r <= b6_shift1_r;
-      b6_shift3_r <= b6_shift2_r;
-      b6_val_data_r <= b6_shift3_r;
-    end
   /* ASIGNACION SALIDAS ------------------------- */
     
     // ASSIGN SON CABLES YA QUE SON CABLES
     assign od_sin_wave = b3_od_sin_wave_r;
-    assign od_ramp_wave = b4_shift_r;
-    assign od_sqr_wave = b5_ROM_r;
-    assign oc_val_data = b6_val_data_r;
+    
 endmodule
 
 
