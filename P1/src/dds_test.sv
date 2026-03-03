@@ -33,7 +33,7 @@ module dds_test #(
   logic [W-1:0] b3_od_sin_wave_r;   // U[W,0]
 
   // b4 
-  logic [W-1:0]b4_shift0_r;  //U[W,0]
+  logic [W-1:0]b4_shift0_s;  //U[W,0]
   logic [W-1:0]b4_shift1_r;  //U[W,0] cambiar en numero en el shift
   logic [W-1:0]b4_shift2_r;  //U[W,0]
   logic [W-1:0]b4_shift_r;
@@ -85,9 +85,9 @@ module dds_test #(
     end
 
     // b4
-    assign b4_shift0_r = b0_ac_r[M-1:M-W]; // los W bits más altos de M; NO REGISTRA
+    assign b4_shift0_s = b0_ac_r[M-1:M-W]; // los W bits más altos de M; NO REGISTRA
     always_ff @(posedge clk) begin
-      b4_shift1_r <= b4_shift0_r;
+      b4_shift1_r <= b4_shift0_s;
       b4_shift2_r <= b4_shift1_r;
       b4_shift_r  <= b4_shift2_r;
     end
