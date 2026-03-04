@@ -31,9 +31,6 @@ test_case = 1;
 
 %%%%% TO COMPLETE BY THE STUDENT
 
-
-
-
 switch test_case
     case 1 
          conf_fm_am = 0; % Control FM --> 1, AM --> 0
@@ -57,14 +54,13 @@ switch test_case
          im_fm = 0; % kHz
          n_periods_to_display = 10; % Number of period to display 
     case 4
-         conf_fm_am=1; % Control FM --> 1, AM --> 0
-         fmod = 20; % KHz
-         fc = 40; % MHz;
-         im_am = 0;
-         im_fm = 500; % kHz
-         n_periods_to_display = 10; % Number of period to display 
-   
-    
+         conf_fm_am=0; % Control FM --> 1, AM --> 0
+         fmod = 0.5; % KHz
+         fc = 10.7; % MHz;
+         im_am = 0.1;
+         im_fm = 0; % kHz
+         n_periods_to_display = 2; % Number of period to display
+ 
     %%%% TO COMPLETE BY THE STUDENT
 
     otherwise
@@ -159,7 +155,10 @@ if file_test_gen == 1
     pack_f=fopen(f,'w');
 	
 		%%%% TO COMPLETE BY THE STUDENT
-	
+    fprintf(pack_f,'%d\n',frec_por_int);
+    fprintf(pack_f,'%d\n',im_am_int);
+    fprintf(pack_f,'%d\n',im_fm_int);
+    fprintf(pack_f,'%d',conf_fm_am);   
     fclose(pack_f);
 
     % Input data file 'id_dp_mod.txt'
@@ -178,9 +177,21 @@ if file_test_gen == 1
     q_out = quantizer([16 15],'wrap','floor');
     f=sprintf([file_dir 'od_dp_mod.txt']);
     pack_f=fopen(f,'w');
-
-		%%%% TO COMPLETE BY THE STUDENT
-	
+    
+    % Elegir la señal de salida según AM/FM
+    if conf_fm_am == 0
+        s_out = s_am; % AM
+    else
+        s_out = s_fm; % FM
+    end
+    
+    num_data_out = length(s_out);
+    
+    for i = 1:num_data_out-1
+        fprintf(pack_f,[num2bin(q_out, s_out(i)) '\n']);
+    end
+    fprintf(pack_f,[num2bin(q_out, s_out(num_data_out))]);
+    
     fclose(pack_f);
 
 
@@ -194,7 +205,12 @@ if file_test_gen == 1
     fprintf(pack_f,' \n');
     
 	    %%%% TO COMPLETE BY THE STUDENT
-	
+	fprintf(pack_f,'real fsc  = %0.15g; // MHz \n', fsc);
+    fprintf(pack_f,'real fmod = %0.15g; // kHz \n', fmod);
+    fprintf(pack_f,'real fc   = %0.15g; // MHz \n', fc);
+    fprintf(pack_f,'real im_am = %0.15g; \n', im_am);
+    fprintf(pack_f,'real im_fm = %0.15g; // kHz \n', im_fm);
+
 	fprintf(pack_f,' \n');
     fprintf(pack_f,'endpackage');
     fclose(pack_f);
