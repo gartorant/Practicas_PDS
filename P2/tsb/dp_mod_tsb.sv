@@ -21,13 +21,25 @@ integer in_sample_cnt; // Contador de muestras de entrada
 logic end_sim; // Indicación de simulación on/off
 logic load_data;  // Inicio de lectura de datos
 			// COMPLETAR --------------------------------
+logic first_sample;        // Para detectar primera muestra y activar val/rst
+integer err_cnt;           // Contador de errores
+integer chk_sample_cnt;    // Contador de muestras comprobadas
+logic do_check;            // Pulso interno para comparar (cuando val_out=1)
+logic signed [15:0] o_data_F; // Salida esperada (File)
+logic signed [15:0] o_data_M; // Salida del modelo (Module)
+
 
 // Gestion I/O texto
 integer data_in_file_val;
 logic signed [15:0] data_in_file;
 integer scan_data_in;
 			// COMPLETAR --------------------------------
+integer data_out_file_val;
+logic signed [15:0] data_out_file;
+integer scan_data_out;
 
+integer cfg_file_val;
+integer scan_cfg;
 
 // Reloj
 always #(PER/2) clk = !clk&end_sim;
@@ -59,15 +71,39 @@ initial
 		
 		// MODIFICAR PARA QUE SE LEAN ESTOS VALORES DESDE 
 		// EL FICHERO id_config_dp_mod.txt
-		conf_fm_am = 0; 
-		p_frec_por = 1869961; 
-		im_am = 32767; 
-		im_fm = 0; 
+		//conf_fm_am = 0; 
+		//p_frec_por = 1869961; 
+		//im_am = 32767; 
+		//im_fm = 0; 
+
+
+        
+        cfg_file_val = $fopen("./iof/id_config_dp_mod.txt", "r");
+        assert (!cfg_file_val) begin
+            $display("---> Error opening file id_config_dp_mod.txt");
+			$stop;
+		end
+        
+        scan_cfg = 0;
+        scan_cfg = scan_cfg + $fscanf(cfg_file_val, "%d\n", p_frec_por);
+        scan_cfg = scan_cfg + $fscanf(cfg_file_val, "%d\n", im_am);
+        scan_cfg = scan_cfg + $fscanf(cfg_file_val, "%d\n", im_fm);
+        scan_cfg = scan_cfg + $fscanf(cfg_file_val, "%d\n", conf_fm_am);
+        if (scan_cfg != 4) begin
+            $display("---> Error reading id_config_dp_mod.txt (expected 4 lines). Got=%0d", scan_cfg);
+            $stop;
+        end
+        $fclose(cfg_file_val);
+
 		//---------------------------------------------------
-		
 		// COMPLETAR CON LAS VARIABLES QUE FALTE POR INICIALIZAR
-
-
+        err_cnt = 0;
+        chk_sample_cnt = 0;
+        first_sample = 1f'b1;
+        do_check = 1'b0;
+        o_data_F = '0;
+        o_data_M = '0;
+        
 		//---------------------------------------------------
 		end_sim = 1'b1;
 		in_sample_cnt = 0;
@@ -104,10 +140,38 @@ always@(posedge clk)
 		end
 		
 // Proceso de lectura de datos salida 
+always@(posedge clk)
+begin
+    do_check <= 1'b0;
 
+    // Cuando se active oc_val_data, leer od_dp_mod.txt y salida del UUT
+    if (val_out)
+    begin
+        if (!$feof(data_out_file_val))
+        begin
+            scan_data_out = $fscanf(data_out_file_val, "%b", data_out_file);
+            o_data_F <= #(PER/10) data_out_file;
+            o_data_M <= #(PER/10) out_data;
+            do_check <= 1'b1;
+        end
+        else
+        begin
+            $display("---> od_dp_mod.txt ended before DUT finished outputting.");
+            $stop;
+        end
+    end
+end
 
 // Contador de errores y muestras
-
+always@(posedge clk)
+begin
+    if (do_check)
+    begin
+        chk_sample_cnt = chk_sample_cnt + 1;
+        if (o_data_F !== o_data_M)
+            err_cnt = err_cnt + 1;
+    end
+end
 
 // Fin de simulación
 always@(end_sim)
@@ -115,9 +179,25 @@ always@(end_sim)
 		begin
 		
 			// COMPLETAR --------------------------------
+            $display("########################################### ");
+            $display(" TEST # ","%d", test_case);
 
-		#(PER*2) $stop;
-		end
+            if (conf_fm_am==1'b0) $display(" AM MODULATION");
+            else                  $display(" FM MODULATION");
+
+            $display(" fsc = ","%0.2f"," MHz", fsc);
+            $display(" fmod = ","%0.2f"," kHz", fmod);
+            $display(" fc = ","%0.2f"," MHz", fc);
+
+            $display(" Number of checked samples ","%d", chk_sample_cnt);
+            $display(" Number of errors ","%d", err_cnt);
+            $display("########################################### ");
+
+            $fclose(data_out_file_val);
+            //-------------------------------------------
+
+        #(PER*2) $stop;
+        end
 
 
 
