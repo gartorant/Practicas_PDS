@@ -16,10 +16,12 @@ module dp_mod
 
 // b0: ruta datos FM
 logic signed [16:0] b0_multiplicand_mux_r; // S[17,16]
-logic [32:0] b0_mult_res_full_s; // S[33,31]
-logic signed [23:0] b0_mult_res_r; // S[24,24]
-logic signed [24:0] b0_sum_res_extended_s; // S[25,24]
-logic signed [23:0] b0_sum_res_r; // S[24,24]
+
+logic signed [16:0] b0_multiplicand_mux_s; // S[17,16]
+logic signed [32:0] b0_mult_full_s;// S[33,31]
+logic signed [23:0] b0_mult_cut_s; // S[24,24]
+logic signed [24:0] b0_sum_ext_s; // S[25,24]
+
 // b1: ruta de datos AM
 
 // b2: DDS
@@ -33,6 +35,19 @@ logic signed [23:0] b0_sum_res_r; // S[24,24]
 /* DESCRIPCION ------------------------- */	
 
 // b0: ruta datos FM
+
+always_comb begin
+  b0_multiplicand_mux_s = ic_fm_am ? $signed({1'b0, id_im_fm}) : 17'sd0;
+  
+  b0_mult_full_s = $signed(id_data) * $signed(b0_multiplicand_mux_s);
+
+  // corte/escala (ajústalo a tu Q-format)
+  b0_mult_cut_s  = b0_mult_full_s[30 -: 24];   
+
+  b0_sum_ext_s   = $signed({b0_mult_cut_s[23], b0_mult_cut_s}) + $signed({1'b0, id_frec_por});
+
+end 
+
 always_ff @(posedge clk) begin
     if(ic_fm_am) begin
     b0_multiplicand_mux_r <= $signed({1'b0, id_im_fm});
@@ -42,6 +57,7 @@ always_ff @(posedge clk) begin
         end
 end
 
+/*
 always_ff @(posedge clk) begin
     if(ic_rst) begin
         b0_mult_res_r <= 0;
@@ -53,7 +69,8 @@ always_ff @(posedge clk) begin
             b0_sum_res_extended_s = {b0_mult_res_r[23], b0_mult_res_r} + $signed({1'b0, id_frec_por});
             b0_sum_res_r <= b0_sum_res_extended_s[23:0];
         end
-end
+end*/
+
 // b1: ruta de datos AM
 
 // b2: DDS
