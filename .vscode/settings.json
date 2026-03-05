@@ -19,17 +19,18 @@
     // Verilog / SystemVerilog
     // ============================
     "[verilog]": {
-        "editor.defaultFormatter": "kukdh1.verible-formatter",
+        "editor.defaultFormatter": "eirikpre.systemverilog",
         "editor.formatOnSave": true
     },
     "[systemverilog]": {
-        "editor.defaultFormatter": "kukdh1.verible-formatter",
+        "editor.defaultFormatter": "eirikpre.systemverilog",
         "editor.formatOnSave": true
     },
     // ============================
     // Verible Formatter
     // ============================
     "veribleFormatter.formatter": "verible-verilog-format",
+    "systemverilog.formatCommand": "verible-verilog-format.exe",
     "veribleFormatter.arguments": [
         "--indentation_spaces=4",
         "--column_limit=100",
