@@ -14,7 +14,11 @@ module dp_mod (
   /* DECLARACIONES ------------------------- */
 
   // b0: ruta datos FM
-
+  logic signed [16:0] b0_multiplicand_mux_r;  // S[17,16]
+  logic [32:0] b0_mult_res_full_s;  // S[33,31]
+  logic signed [23:0] b0_mult_res_r;  // S[24,24]
+  logic signed [24:0] b0_sum_res_extended_s;  // S[25,24]
+  logic signed [23:0] b0_sum_res_r;  // S[24,24]
   // b1: ruta de datos AM
   // Formato: logic [tamanyo del dato] variable [cuantos datos];
   logic signed [15:0] b1_shift_r[0:2];
@@ -40,7 +44,25 @@ module dp_mod (
   /* DESCRIPCION ------------------------- */
 
   // b0: ruta datos FM
+  always_ff @(posedge clk) begin
+    if (ic_fm_am) begin
+      b0_multiplicand_mux_r <= $signed({1'b0, id_im_fm});
+    end else begin
+      b0_multiplicand_mux_r <= 17'd0;
+    end
+  end
 
+  always_ff @(posedge clk) begin
+    if (ic_rst) begin
+      b0_mult_res_r <= 0;
+      b0_sum_res_r  <= 0;
+    end else begin
+      b0_mult_res_full_s = id_data * b0_multiplicand_mux_r;
+      b0_mult_res_r <= b0_mult_res_full_s[30:30-23];
+      b0_sum_res_extended_s = {b0_mult_res_r[23], b0_mult_res_r} + $signed({1'b0, id_frec_por});
+      b0_sum_res_r <= b0_sum_res_extended_s[23:0];
+    end
+  end
   // b1: ruta de datos AM
   always_ff @(posedge clk) begin
     b1_shift_r[0] <= id_data;
