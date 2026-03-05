@@ -8,8 +8,6 @@ module dp_mod_dds #(
     input                 ic_rst_ac,      // bit
     input                 ic_en_ac,       // bit
     input                 clk,            // bit
-    output signed [W-1:0] od_sqr_wave,    // S[W,W-1]
-    output signed [W-1:0] od_ramp_wave,   // S[W,W-1]
     output signed [W-1:0] od_sin_wave,    // S[W,W-1]
 );
 
