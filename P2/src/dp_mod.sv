@@ -15,20 +15,21 @@ module dp_mod (
 
   // b0: ruta datos FM
   logic signed [16:0] b0_multiplicand_mux_r;  // S[17,16]
-  logic [32:0] b0_mult_res_full_s;  // S[33,31]
+  logic        [32:0] b0_mult_res_full_s;  // S[33,31]
   logic signed [23:0] b0_mult_res_r;  // S[24,24]
   logic signed [24:0] b0_sum_res_extended_s;  // S[25,24]
   logic signed [23:0] b0_sum_res_r;  // S[24,24]
+
   // b1: ruta de datos AM
   // Formato: logic [tamanyo del dato] variable [cuantos datos];
-  logic signed [15:0] b1_shift_r[0:2];
+  logic signed [15:0] b1_shift_r                         [0:2];
   logic signed [15:0] b1_res_mult_s;
   logic signed [15:0] b1_res_mult_r;
   logic signed [16:0] b1_res_add_s;
   logic signed [16:0] b1_res_add_r;
 
   // b2: DDS
-  logic b2_rst_r[0:1];
+  logic               b2_rst_r                           [0:1];
 
   // b3: etapa final
   logic signed [15:0] b3_oud_dds_s;
@@ -38,7 +39,7 @@ module dp_mod (
   logic signed [15:0] b3_out_od_data_r;
 
   // b4: Generaci�n  de oc_val_data
-  logic ic_val_data_r[6:0];
+  logic               ic_val_data_r                      [6:0];
 
 
   /* DESCRIPCION ------------------------- */
