@@ -1,8 +1,17 @@
-../src/dp_mod.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P2/src/dp_mod.sv
+../tsb/dp_mod_tsb.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module dp_mod
+-- Compiling package dp_mod_tsb_sv_unit
+-- Importing package dp_mod_tsb_pkg
+-- Compiling module dp_mod_tsb
 
 Top level modules:
-	dp_mod
+	dp_mod_tsb
+
+} {} {}} ../tsb/dp_mod_tsb_pkg.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb_pkg.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling package dp_mod_tsb_pkg
+
+Top level modules:
+	--none--
 
 } {} {}}

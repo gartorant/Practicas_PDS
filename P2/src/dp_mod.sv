@@ -92,7 +92,7 @@ module dp_mod (
   end
 
   // Extension de signo del registro para tener la senyal con formato S[18:15]
-  assign b1_in_mult_s = {{2{b1_in_mult_s[2][15]}}, b1_in_mult_s[2]};
+  assign b1_in_mult_s = {{2{b1_shift_r[2][15]}}, b1_shift_r[2]};
 
   // Extension de id_im_am U[16,15] a S[18:15]
   assign b1_id_im_am_s = $signed({2'b00, id_im_fm});
@@ -143,7 +143,7 @@ module dp_mod (
   assign b3_res_mult_full_s = b3_res_mux_full_s * b3_out_dds_full_s;
   // Registro la salida del producto en formato S[16,15]
   always_ff @(posedge clk) begin
-    b3_out_od_data_r <= b3_res_mult_full_s[30, 15];
+    b3_out_od_data_r <= b3_res_mult_full_s[30:15];
   end
 
   // b4: propagacion de val_data
