@@ -21,7 +21,7 @@ file_dir = '../sim/iof/';
 tsb_dir = '../tsb/'; 
 
 %% TEST CASES:
-test_case = 1;
+test_case = 2;
 
 % List of test cases
 % 1 : AM, fmod=1 KHz,   fc=10.7 MHz, im_am = (1-2^-15) 

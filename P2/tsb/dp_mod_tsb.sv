@@ -35,7 +35,7 @@ module dp_mod_tsb ();
   logic signed [15:0] out_data_F;
   integer scan_data_out;
   logic signed [15:0] out_data_M;
-
+  integer scan_config;
   // Reloj
   always #(PER / 2) clk = !clk & end_sim;
 
@@ -89,10 +89,30 @@ module dp_mod_tsb ();
       $stop;
     end
 
-    $fscanf(config_file_val, "%d\n", p_frec_por);
-    $fscanf(config_file_val, "%d\n", im_am);
-    $fscanf(config_file_val, "%d\n", im_fm);
-    $fscanf(config_file_val, "%d\n", conf_fm_am);
+    scan_config = $fscanf(config_file_val, "%d\n", p_frec_por);
+    assert (scan_config == 1)
+    else begin
+      $display("---> Error leyendo p_frec_por desde id_config_dp_mod.txt");
+      $stop;
+    end
+    scan_config = $fscanf(config_file_val, "%d\n", im_am);
+    assert (scan_config == 1)
+    else begin
+      $display("---> Error leyendo im_am desde id_config_dp_mod.txt");
+      $stop;
+    end
+    scan_config = $fscanf(config_file_val, "%d\n", im_fm);
+    assert (scan_config == 1)
+    else begin
+      $display("---> Error leyendo im_fm desde id_config_dp_mod.txt");
+      $stop;
+    end
+    scan_config = $fscanf(config_file_val, "%d\n", conf_fm_am);
+    assert (scan_config == 1)
+    else begin
+      $display("---> Error leyendo conf_fm_am desde id_config_dp_mod.txt");
+      $stop;
+    end
     $fclose(config_file_val);
 
     //---------------------------------------------------
@@ -119,7 +139,7 @@ module dp_mod_tsb ();
     if (load_data) begin
       if (!$feof(data_in_file_val)) begin
         in_sample_cnt = in_sample_cnt + 1;
-        scan_data_in  = $fscanf(data_in_file_val, "%b", data_in_file);
+        scan_data_in  = $fscanf(data_in_file_val, "%b\n", data_in_file);
         in_data <= #(PER / 10) data_in_file;  //Salida del fichero
         rst_ac  <= #(PER / 10) 1'b0;
         val_in  <= #(PER / 10) 1'b1;
@@ -140,7 +160,7 @@ module dp_mod_tsb ();
     if (val_out) begin
       out_sample_cnt = out_sample_cnt + 1;
       if (!$feof(data_out_file_val)) begin
-        scan_data_out = $fscanf(data_out_file_val, "%b", out_data_F);
+        scan_data_out = $fscanf(data_out_file_val, "%b\n", out_data_F);
         wave_F <= #(PER / 10) out_data_F;
         wave_M <= #(PER / 10) out_data_M;
       end else begin
@@ -150,15 +170,15 @@ module dp_mod_tsb ();
     end
 
   // Contador de errores y muestras
-  always @(posedge clk) begin
-    if (val_out) begin
-      assert (wave_F == wave_M)
-      else begin
-        error_cnt = error_cnt + 1;
-        $display("Error in sample number %0d", out_sample_cnt);
-      end
+  always @(wave_F, wave_M) begin
+    Assert_error_out :
+    assert (wave_F == wave_M)
+    else begin
+      error_cnt = error_cnt + 1;
+      $display("Error in sample number %0d", out_sample_cnt);
     end
   end
+
   // Fin de simulación
   always @(end_sim)
     if (!end_sim) begin

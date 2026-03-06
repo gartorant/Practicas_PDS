@@ -5,13 +5,14 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	dp_mod
 
-} {} {}} ../src/dp_mod_dds.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P2/src/dp_mod_dds.sv
+} {} {}} ../tsb/dp_mod_tsb.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module dp_mod_dds
--- Compiling module dp_mod_dds_rom
+-- Compiling package dp_mod_tsb_sv_unit
+-- Importing package dp_mod_tsb_pkg
+-- Compiling module dp_mod_tsb
 
 Top level modules:
-	dp_mod_dds
+	dp_mod_tsb
 
 } {} {}} ../tsb/dp_mod_tsb_pkg.sv {1 {vlog -work work -sv -stats=none C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb_pkg.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
