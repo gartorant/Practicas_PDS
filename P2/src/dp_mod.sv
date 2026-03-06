@@ -25,24 +25,26 @@ module dp_mod (
 
   // b1: ruta de datos AM
   // Formato: logic [tamanyo del dato] variable [cuantos datos];
-  logic signed [15:0] b1_shift_r                                          [0:2];
-  logic signed [15:0] b1_res_mult_s;
-  logic signed [15:0] b1_res_mult_r;
-  logic signed [16:0] b1_res_add_s;
-  logic signed [16:0] b1_res_add_r;
+  logic signed [15:0] b1_shift_r                                          [0:2];  // S[16,15]
+  logic signed [17:0] b1_in_mult_s;  // S[18,15]
+  logic signed [17:0] b1_id_im_am_s;  // S[18:15]
+  logic signed [35:0] b1_res_mult_full_s;  // S[36,30]
+  logic signed [15:0] b1_res_mult_r;  // S[16,15]
+  logic signed [16:0] b1_res_add_r;  // S[17,15]
 
   // b2: DDS
-  logic               b2_rst_r                                            [0:1];
+  logic               b2_rst_r                                            [0:1];  // bit
 
   // b3: etapa final
-  logic signed [15:0] b3_oud_dds_s;
-  logic signed [16:0] b3_res_mux_r;
-  logic signed [16:0] b3_res_mux_s;
-  logic signed [15:0] b3_out_od_data_s;
-  logic signed [15:0] b3_out_od_data_r;
+  logic signed [15:0] b3_out_dds_s;  // S[16,15]
+  logic signed [17:0] b3_out_dds_full_s;  //S[18,15]
+  logic signed [16:0] b3_res_mux_r;  // S[17,15]
+  logic signed [17:0] b3_res_mux_full_s;  // S[18,15]
+  logic signed [35:0] b3_res_mult_full_s;  // S[36,30]
+  logic signed [15:0] b3_out_od_data_r;  // S[16,15]
 
   // b4: Generacion  de oc_val_data
-  logic               ic_val_data_r                                       [6:0];
+  logic               ic_val_data_r                                       [6:0];  //bit
 
 
   /* DESCRIPCION ------------------------- */
@@ -71,14 +73,17 @@ module dp_mod (
   end
   // Convierto id_frec_por de U[24,24] en b0_id_frec_por_s S[25,24]
   assign b0_id_frec_por_s = $signed({1'b0, id_frec_por});
+
   // Sumador con la alineacion para que ambos tengan el mismo tamanyo (redundante ya que ambos ahora son signed)
   always_comb begin
     b0_sum_res_extended_s = $signed({b0_out_mult_res_r[23], b0_out_mult_res_r}) + b0_id_frec_por_s;
   end
+
   // Registro de la suma
   always_ff @(posedge clk) begin
     b0_sum_res_r <= b0_sum_res_extended_s[23:0];
   end
+
   // b1: ruta de datos AM
   always_ff @(posedge clk) begin
     b1_shift_r[0] <= id_data;
@@ -86,16 +91,23 @@ module dp_mod (
     b1_shift_r[2] <= b1_shift_r[1];
   end
 
-  assign b1_res_mult_s = $signed(id_im_am) * b1_shift_r[2];
+  // Extension de signo del registro para tener la senyal con formato S[18:15]
+  assign b1_in_mult_s = {{2{b1_in_mult_s[2][15]}}, b1_in_mult_s[2]};
 
+  // Extension de id_im_am U[16,15] a S[18:15]
+  assign b1_id_im_am_s = $signed({2'b00, id_im_fm});
+
+  // Multiplicacion
+  assign b1_res_mult_full_s = b1_id_im_am_s * b1_in_mult_s;
+
+  // Truncamos para obtener un dato de 16 bits
   always_ff @(posedge clk) begin
-    b1_res_mult_r <= b1_res_mult_s;
+    b1_res_mult_r <= b1_res_mult_full_s[30:15];
   end
-
-  assign b1_res_add_s = b1_res_mult_r + 16'h8000;
-
+  // Suma con un formato S[17,15]
+  // Registramos la seyal
   always_ff @(posedge clk) begin
-    b1_res_add_r <= b1_res_add_s;
+    b1_res_add_r <= b1_res_mult_r + 17'h8000;
   end
 
   // b2: DDS
@@ -103,30 +115,35 @@ module dp_mod (
     b2_rst_r[0] <= ic_rst;
     b2_rst_r[1] <= b2_rst_r[0];
   end
+
   dp_mod_dds #(
       .M(24),
       .L(15),
       .W(16)
   ) dp_mod_dds_module (
-      .id_p_ac(),
+      .id_p_ac(b0_sum_res_r),
       .ic_rst_ac(b2_rst_r[1]),
       .ic_en_ac(1'b1),
       .clk(clk),
-      .od_sin_wave(b3_oud_dds_s)
+      .od_sin_wave(b3_out_dds_s)
   );
+
   // b3: Etapa final
   always_ff @(posedge clk) begin
     if (!ic_fm_am) begin
       b3_res_mux_r <= (b1_res_add_r >>> 1);
     end else begin
-      b3_res_mux_r <= 16'h8000;
+      b3_res_mux_r <= 17'h8000;
     end
   end
-
-  assign b3_out_od_data_s = b3_res_mux_r * b3_oud_dds_s;
-
+  // Extender a 18 bits
+  assign b3_out_dds_full_s  = {{2{b3_out_dds_s[15]}}, b3_out_dds_s};
+  assign b3_res_mux_full_s  = {{1{b3_res_mux_r[16]}}, b3_res_mux_r};
+  // Producto con formato S[36,30]
+  assign b3_res_mult_full_s = b3_res_mux_full_s * b3_out_dds_full_s;
+  // Registro la salida del producto en formato S[16,15]
   always_ff @(posedge clk) begin
-    b3_out_od_data_r <= b3_out_od_data_s;
+    b3_out_od_data_r <= b3_res_mult_full_s[30, 15];
   end
 
   // b4: propagacion de val_data
@@ -142,6 +159,6 @@ module dp_mod (
 
   /* ASIGNACION SALIDAS ------------------------- */
   assign od_data = b3_out_od_data_r;
-  assign oc_val_data = ic_val_data;  // HAY QUE MODIFICARLO
+  assign oc_val_data = ic_val_data_r[6];  // HAY QUE MODIFICARLO
 
 endmodule
