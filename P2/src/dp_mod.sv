@@ -18,7 +18,7 @@ module dp_mod (
   logic signed [17:0] b0_out_mux_s;  // S[18,16] -> con estension de signo
   logic signed [17:0] b0_id_data_s;  // S[18,15] -> con estension de signo
   logic signed [35:0] b0_mult_res_full_s;  // S[36,31]
-  logic signed [23:0] b0_mult_res_r;  // S[24,24]
+  logic signed [23:0] b0_out_mult_res_r;  // S[24,24]
   logic signed [24:0] b0_sum_res_extended_s;  // S[25,24]
   logic signed [23:0] b0_sum_res_r;  // S[24,24]
 
@@ -61,9 +61,16 @@ module dp_mod (
   assign b0_id_data_s = {{2{id_data[15]}}, id_data};
   assign b0_out_mux_s = {{1{b0_out_mux_r[16]}}, b0_out_mux_r};
 
+  // Producto de 18x18 con una salida de 36 bits con formato S[36,31]
   always_comb begin
-    b0_mult_res_full_s = b0_id_data_s;
+    b0_mult_res_full_s = b0_id_data_s * b0_out_mux_s;
   end
+
+  // Registro de la salida S[36,31] a S[24,24]
+  always_ff @(posedge clk) begin
+    b0_out_mult_res_r <= b0_mult_res_full_s[30:7];
+  end
+
   // b1: ruta de datos AM
   always_ff @(posedge clk) begin
     b1_shift_r[0] <= id_data;
