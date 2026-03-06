@@ -32,9 +32,9 @@ module dp_mod_tsb ();
   // COMPLETAR --------------------------------
   integer config_file_val;
   integer data_out_file_val;
-  logic signed [15:0] data_out_file;
+  logic signed [15:0] out_data_F;
   integer scan_data_out;
-  logic signed [15:0] out_data;
+  logic signed [15:0] out_data_M;
 
   // Reloj
   always #(PER / 2) clk = !clk & end_sim;
@@ -49,7 +49,7 @@ module dp_mod_tsb ();
       .ic_rst(rst_ac),
       .ic_val_data(val_in),
       .clk(clk),
-      .od_data(out_data),
+      .od_data(out_data_M),
       .oc_val_data(val_out)
   );
 
@@ -140,9 +140,9 @@ module dp_mod_tsb ();
     if (val_out) begin
       out_sample_cnt = out_sample_cnt + 1;
       if (!$feof(data_out_file_val)) begin
-        scan_data_out = $fscanf(data_out_file_val, "%b", data_out_file);
-        wave_F <= #(PER / 10) data_out_file;
-        wave_M <= #(PER / 10) out_data;
+        scan_data_out = $fscanf(data_out_file_val, "%b", out_data_F);
+        wave_F <= #(PER / 10) out_data_F;
+        wave_M <= #(PER / 10) out_data_M;
       end else begin
         end_sim = #(10 * PER) 1'b0;
         $display("---> od_dp_mod.txt ended before DUT finished outputting.");
