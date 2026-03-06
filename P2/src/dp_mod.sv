@@ -17,7 +17,7 @@ module dp_mod (
   logic signed [16:0] b0_out_mux_r;  // S[17,16]
   logic signed [17:0] b0_out_mux_s;  // S[18,16] -> con estension de signo
   logic signed [17:0] b0_id_data_s;  // S[18,15] -> con estension de signo
-  logic signed [32:0] b0_mult_res_full_s;  // S[33,31]
+  logic signed [35:0] b0_mult_res_full_s;  // S[36,31]
   logic signed [23:0] b0_mult_res_r;  // S[24,24]
   logic signed [24:0] b0_sum_res_extended_s;  // S[25,24]
   logic signed [23:0] b0_sum_res_r;  // S[24,24]
