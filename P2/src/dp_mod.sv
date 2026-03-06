@@ -15,6 +15,8 @@ module dp_mod (
 
   // b0: ruta datos FM
   logic signed [16:0] b0_out_mux_r;  // S[17,16]
+  logic signed [17:0] b0_out_mux_s;  // S[18,16] -> con estension de signo
+  logic signed [17:0] b0_id_data_s;  // S[18,15] -> con estension de signo
   logic signed [32:0] b0_mult_res_full_s;  // S[33,31]
   logic signed [23:0] b0_mult_res_r;  // S[24,24]
   logic signed [24:0] b0_sum_res_extended_s;  // S[25,24]
@@ -22,14 +24,14 @@ module dp_mod (
 
   // b1: ruta de datos AM
   // Formato: logic [tamanyo del dato] variable [cuantos datos];
-  logic signed [15:0] b1_shift_r                         [0:2];
+  logic signed [15:0] b1_shift_r                                          [0:2];
   logic signed [15:0] b1_res_mult_s;
   logic signed [15:0] b1_res_mult_r;
   logic signed [16:0] b1_res_add_s;
   logic signed [16:0] b1_res_add_r;
 
   // b2: DDS
-  logic               b2_rst_r                           [0:1];
+  logic               b2_rst_r                                            [0:1];
 
   // b3: etapa final
   logic signed [15:0] b3_oud_dds_s;
@@ -39,7 +41,7 @@ module dp_mod (
   logic signed [15:0] b3_out_od_data_r;
 
   // b4: Generaci�n  de oc_val_data
-  logic               ic_val_data_r                      [6:0];
+  logic               ic_val_data_r                                       [6:0];
 
 
   /* DESCRIPCION ------------------------- */
@@ -50,12 +52,17 @@ module dp_mod (
     if (ic_fm_am) begin
       b0_out_mux_r <= $signed({1'b0, id_im_fm});
     end else begin
-      b0_out_mux_r <= 17'd0;
+      b0_out_mux_r <= '0;
     end
   end
-  // MULTIPLICADOR B0 1
+
+  // Forzamos los 18 bits para que el sintetizador entienda que estamos 
+  // queriendo usar los multiplicadores de 18 x 18
+  assign b0_id_data_s = {{2{id_data[15]}}, id_data};
+  assign b0_out_mux_s = {{1{b0_out_mux_r[16]}}, b0_out_mux_r};
+
   always_comb begin
-    b0_mult_res_full_s = 
+    b0_mult_res_full_s = b0_id_data_s;
   end
   // b1: ruta de datos AM
   always_ff @(posedge clk) begin
