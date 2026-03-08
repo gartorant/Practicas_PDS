@@ -10,97 +10,143 @@ cModel Technology
 dC:/PDS_FPGA/2026/Practicas_PDS/P1/sim
 vdp_mod
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1772580325
+Z1 !s110 1772785302
 !i10b 1
-!s100 Y]A1a2Gc?UE5QNE<m90na2
-I>887aEb<l67jPRl?i4P`I2
+!s100 3_76Y3lOjO]<ZNji:MT;N1
+I7A05_Pad_[V4_FLcMl0Oi3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 dp_mod_sv_unit
 S1
 Z3 dC:/PDS_FPGA/2026/Practicas_PDS/P2/sim
-Z4 w1772572643
+w1772773245
 8C:/PDS_FPGA/2026/Practicas_PDS/P2/src/dp_mod.sv
 FC:/PDS_FPGA/2026/Practicas_PDS/P2/src/dp_mod.sv
 L0 1
-Z5 OV;L;10.5b;63
+Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1772580325.000000
+Z5 !s108 1772785302.000000
 !s107 C:/PDS_FPGA/2026/Practicas_PDS/P2/src/dp_mod.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/PDS_FPGA/2026/Practicas_PDS/P2/src/dp_mod.sv|
 !i113 1
-Z7 o-work work -sv
-Z8 tCvgOpt 0
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+vdp_mod_dds
+R0
+Z8 !s110 1772779006
+!i10b 1
+!s100 fn`S>=C=5WTloQf_14EQZ0
+I9Zf2TO=8Nak;[1A;^om1n0
+R2
+Z9 !s105 dp_mod_dds_sv_unit
+S1
+R3
+Z10 w1772774040
+Z11 8../src/dp_mod_dds.sv
+Z12 F../src/dp_mod_dds.sv
+L0 1
+R4
+r1
+!s85 0
+31
+Z13 !s108 1772779006.000000
+Z14 !s107 ../src/dp_mod_dds.sv|
+Z15 !s90 -reportprogress|300|../src/dp_mod_dds.sv|
+!i113 1
+R7
+vdp_mod_dds_rom
+R0
+R8
+!i10b 1
+!s100 UIOChEzlDF]AmzQU^mJ]k2
+IZU9hnNnUF`:<KgH:XdQBb3
+R2
+R9
+S1
+R3
+R10
+R11
+R12
+L0 77
+R4
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R7
 vdp_mod_tsb
 R0
-Z9 DXx4 work 14 dp_mod_tsb_pkg 0 22 :XE7I6bi<cg2:4>eVQBIz1
-DXx4 work 18 dp_mod_tsb_sv_unit 0 22 8[emM^H4BaU4jHkXCWZ=M1
+Z16 DXx4 work 14 dp_mod_tsb_pkg 0 22 MS@N>RCZDJ[gjdmheMo3^1
+DXx4 work 18 dp_mod_tsb_sv_unit 0 22 2]K[a@=9WRaQ2fS@>]3QA1
 R2
 r1
 !s85 0
 31
 !i10b 1
-!s100 ailiX=3G;`SFDz05nFJd_0
-IE?l=D]nY>TGIe2SmG3@g53
+!s100 CZnzcUGS0?D^HO:;YmkiY2
+IkbRLK6oobTP0KfO52iP<S0
 !s105 dp_mod_tsb_sv_unit
 S1
 R3
-R4
-Z10 8C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv
-Z11 FC:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv
+Z17 w1772783898
+Z18 8C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv
+Z19 FC:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv
 L0 4
+R4
 R5
-R6
-Z12 !s107 C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv|
-Z13 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv|
+Z20 !s107 C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv|
+Z21 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv|
 !i113 1
+R6
 R7
-R8
 Xdp_mod_tsb_pkg
 R0
 R1
 !i10b 1
-!s100 @4bSW8H;T=[oKG>LQoOE43
-I:XE7I6bi<cg2:4>eVQBIz1
-V:XE7I6bi<cg2:4>eVQBIz1
+!s100 J1d[cA^8K[X=kkzAfGJ0]0
+IMS@N>RCZDJ[gjdmheMo3^1
+VMS@N>RCZDJ[gjdmheMo3^1
 S1
 R3
-R4
+w1772778305
 8C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb_pkg.sv
 FC:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb_pkg.sv
 L0 1
-R5
+R4
 r1
 !s85 0
 31
-R6
+R5
 !s107 C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb_pkg.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb_pkg.sv|
 !i113 1
+R6
 R7
-R8
 Xdp_mod_tsb_sv_unit
 R0
-R9
-V8[emM^H4BaU4jHkXCWZ=M1
+R16
+V2]K[a@=9WRaQ2fS@>]3QA1
 r1
 !s85 0
 31
 !i10b 1
-!s100 I;BO13KITX<=6QmdL:HM=1
-I8[emM^H4BaU4jHkXCWZ=M1
+!s100 [Ce?Kjdc=oa;7fAfl[DE^0
+I2]K[a@=9WRaQ2fS@>]3QA1
 !i103 1
 S1
 R3
-R4
-R10
-R11
+R17
+R18
+R19
 L0 2
+R4
 R5
-R6
-R12
-R13
+R20
+R21
 !i113 1
+R6
 R7
-R8
