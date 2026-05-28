@@ -30,18 +30,19 @@ test_case = 1;
 % 4 : FM, fmod=20 KHz,   fc=40 MHz, im_fm = 500 kHz,
 
 %%%%% TO COMPLETE BY THE STUDENT
-
+% 5 : FM, fmod=5 KHz,   fc=10.7 MHz, im_fm = 500 kHz,
+% 6 : AM, fmod=5 KHz,   fc=40   MHz, im_am = (1-2^-15)
 switch test_case
     case 1 
          conf_fm_am = 0; % Control FM --> 1, AM --> 0
-         fmod = 5; % KHz
+         fmod = 1; % KHz
          fc = 10.7; % MHz
          im_am = (1-2^-15);
          im_fm = 0; % kHz
          n_periods_to_display = 2; % Number of period to display 
     case 2 
          conf_fm_am = 1; % Control FM --> 1, AM --> 0
-         fmod = 5; % KHz
+         fmod = 1; % KHz
          fc = 1; % MHz
          im_am = 0;
          im_fm = 700; % kHz
@@ -54,14 +55,29 @@ switch test_case
          im_fm = 0; % kHz
          n_periods_to_display = 10; % Number of period to display 
     case 4
-         conf_fm_am=0; % Control FM --> 1, AM --> 0
+         conf_fm_am=1; % Control FM --> 1, AM --> 0
          fmod = 0.5; % KHz
+         fc = 10.7; % MHz;
+         im_am = 0.1;
+         im_fm = 500; % kHz
+         n_periods_to_display = 2; % Number of period to display
+ 
+    %%%% TO COMPLETE BY THE STUDENT
+     case 5
+         conf_fm_am=1; % Control FM --> 1, AM --> 0
+         fmod = 5; % KHz
          fc = 10.7; % MHz;
          im_am = 0.1;
          im_fm = 0; % kHz
          n_periods_to_display = 2; % Number of period to display
- 
-    %%%% TO COMPLETE BY THE STUDENT
+
+     case 6
+         conf_fm_am=0; % Control FM --> 1, AM --> 0
+         fmod = 5; % KHz
+         fc = 40; % MHz;
+         im_am = (1-2^-15);
+         im_fm = 0; % kHz
+         n_periods_to_display = 2; % Number of period to display
 
     otherwise
         error ('--> This test case is not defined <--') 
