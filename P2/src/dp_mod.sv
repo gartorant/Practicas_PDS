@@ -95,7 +95,7 @@ module dp_mod (
   assign b1_in_mult_s = {{2{b1_shift_r[2][15]}}, b1_shift_r[2]};
 
   // Extension de id_im_am U[16,15] a S[18:15]
-  assign b1_id_im_am_s = $signed({2'b00, id_im_fm});
+  assign b1_id_im_am_s = $signed({2'b00, id_im_am});
 
   // Multiplicacion
   assign b1_res_mult_full_s = b1_id_im_am_s * b1_in_mult_s;
@@ -107,7 +107,7 @@ module dp_mod (
   // Suma con un formato S[17,15]
   // Registramos la seyal
   always_ff @(posedge clk) begin
-    b1_res_add_r <= b1_res_mult_r + 17'h8000;
+    b1_res_add_r <= $signed({{1{b1_res_mult_r[15]}}, b1_res_mult_r}) + 17'sh08000;
   end
 
   // b2: DDS

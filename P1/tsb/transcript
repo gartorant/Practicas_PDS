@@ -1,0 +1,109 @@
+# Reading C:/intelFPGA_lite/17.1/modelsim_ase/tcl/vsim/pref.tcl
+# OpenFile C:/PDS_FPGA/2026/Practicas_PDS/P1/tsb/dds_test_tsb.sv
+# Loading project cic_test
+# Compile of cic_com.sv was successful.
+# Compile of cic_tsb_pkg.sv was successful.
+# Compile of cic_comb_tsb.sv failed with 16 errors.
+# 3 compiles, 1 failed with 16 errors.
+# Compile of cic_com.sv was successful.
+# Compile of cic_tsb_pkg.sv was successful.
+# Compile of cic_comb_tsb.sv failed with 15 errors.
+# 3 compiles, 1 failed with 15 errors.
+# Error opening C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv
+# Path name 'C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv' doesn't exist.
+# Error opening C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv
+# Path name 'C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv' doesn't exist.
+# Error opening C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv
+# Path name 'C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv' doesn't exist.
+# Error opening C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv
+# Path name 'C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv' doesn't exist.
+# Error opening C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv
+# Path name 'C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv' doesn't exist.
+# Error opening C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv
+# Path name 'C:/PDS_FPGA/2026/P3/P3/sim/(vlog-13069) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv' doesn't exist.
+# Compile of cic_comb_tsb.sv was successful.
+clc
+# invalid command name "clc"
+clean
+clear
+# invalid command name "clear"
+clear
+# invalid command name "clear"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Compile of cic_com.sv was successful.
+# Compile of cic_tsb_pkg.sv was successful.
+# Compile of cic_comb_tsb.sv was successful.
+# 3 compiles, 0 failed with no errors.
+vsim work.cic_comb_tsb
+# vsim work.cic_comb_tsb 
+# Start time: 06:48:07 on Mar 27,2026
+# Loading sv_std.std
+# Loading work.cic_tsb_pkg
+# Loading work.cic_comb_tsb_sv_unit
+# Loading work.cic_comb_tsb
+# Loading work.cic_comb
+# ** Warning: (vsim-3015) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv(44): [PCDPC] - Port size (21) does not match connection size (18) for port 'id_data'. The port definition is at: C:/PDS_FPGA/2026/P3/P3/src/cic_com.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /cic_comb_tsb/COM_UUT File: C:/PDS_FPGA/2026/P3/P3/src/cic_com.sv
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint  \
+sim:/cic_comb_tsb/out_comb_File \
+sim:/cic_comb_tsb/out_comb_Module
+run
+########################################### 
+# START TEST #           1
+########################################### 
+# ** Warning: (vsim-3534) [FOFIR] - Failed to open file ",/iof/id_cic.txt" for reading.
+# No such file or directory. (errno = ENOENT)    : C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv(57)
+#    Time: 0 ps  Iteration: 0  Instance: /cic_comb_tsb
+# Error: No se pudo abrir el archivo de entrada.
+# ** Note: $finish    : C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv(62)
+#    Time: 0 ps  Iteration: 0  Instance: /cic_comb_tsb
+# 1
+# Break in Module cic_comb_tsb at C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv line 62
+# Compile of cic_comb_tsb.sv was successful.
+vsim work.cic_comb_tsb
+# End time: 06:49:58 on Mar 27,2026, Elapsed time: 0:01:51
+# Errors: 0, Warnings: 3
+# vsim work.cic_comb_tsb 
+# Start time: 06:49:58 on Mar 27,2026
+# Loading sv_std.std
+# Loading work.cic_tsb_pkg
+# Loading work.cic_comb_tsb_sv_unit
+# Loading work.cic_comb_tsb
+# Loading work.cic_comb
+# ** Warning: (vsim-3015) C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv(44): [PCDPC] - Port size (21) does not match connection size (18) for port 'id_data'. The port definition is at: C:/PDS_FPGA/2026/P3/P3/src/cic_com.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /cic_comb_tsb/COM_UUT File: C:/PDS_FPGA/2026/P3/P3/src/cic_com.sv
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint  \
+sim:/cic_comb_tsb/out_comb_File \
+sim:/cic_comb_tsb/out_comb_Module
+run -all
+########################################### 
+# START TEST #           1
+########################################### 
+# ** Warning: (vsim-3534) [FOFIR] - Failed to open file "/iof/id_cic.txt" for reading.
+# No such file or directory. (errno = ENOENT)    : C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv(57)
+#    Time: 0 ps  Iteration: 0  Instance: /cic_comb_tsb
+# Error: No se pudo abrir el archivo de entrada.
+# ** Note: $finish    : C:/PDS_FPGA/2026/P3/P3/tsb/cic_comb_tsb.sv(62)
+#    Time: 0 ps  Iteration: 0  Instance: /cic_comb_tsb
+# End time: 06:50:40 on Mar 27,2026, Elapsed time: 0:00:42
+# Errors: 0, Warnings: 2

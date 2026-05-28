@@ -1,41 +1,36 @@
 # Reading C:/intelFPGA_lite/17.1/modelsim_ase/tcl/vsim/pref.tcl
 # OpenFile C:/PDS_FPGA/2026/Practicas_PDS/P2/sim/dp_mod_dds_test.mpf
 # Loading project dp_mod_dds_test
-vcd file dump.vcd
-# Error while executing: vcd
-# Usage: vcd add|checkpoint|comment|dumpports|dumpportsall|dumpportsflush|dumpportslimit|dumpportsoff|dumpportson|file|files|flush|limit|off|on
-vsim work.dp_mod_dds
-# vsim work.dp_mod_dds 
-# Start time: 09:12:10 on Mar 06,2026
+vsim work.dp_mod_tsb
+# vsim work.dp_mod_tsb 
+# Start time: 02:18:23 on May 28,2026
 # Loading sv_std.std
+# Loading work.dp_mod_tsb_pkg
+# Loading work.dp_mod_tsb_sv_unit
+# Loading work.dp_mod_tsb
+# Loading work.dp_mod
 # Loading work.dp_mod_dds
 # Loading work.dp_mod_dds_rom
 # WARNING: No extended dataflow license exists
-vcd file dump.vcd
-vcd add -r sim:/dp_mod_tsb/*
-# ** Error (suppressible): (vsim-3561) No objects found matching 'dp_mod_tsb'.
-vcd add -r tsb:/dp_mod_tsb/*
-# ** Error (suppressible): (vsim-3561) No objects found matching 'tsb'.
-vcd add -r ../tsb:/dp_mod_tsb/*
-# ** Error (suppressible): (vsim-3561) No objects found matching 'tsb'.
-vcd add -r ../tsb/dp_mod_tsb/*
-# ** Error (suppressible): (vsim-3561) No objects found matching 'tsb'.
-vcd add -r ../tsb/*
-# ** Error (suppressible): (vsim-3561) No objects found matching 'tsb'.
-run --all
-# Unknown option: -all
-# ** Error: (vsim-4005) Invalid argument '--all'.
-# Usage: run [<timesteps> [<time_units>]] | -all | -continue | -next | -step | -over | -out | -init | -final
+add wave -position insertpoint  \
+sim:/dp_mod_tsb/clk \
+sim:/dp_mod_tsb/wave_M \
+sim:/dp_mod_tsb/wave_F \
+sim:/dp_mod_tsb/error_cnt
 run -all
-# Compile of dp_mod.sv was successful.
-# Compile of dp_mod_tsb_pkg.sv was successful.
-# Compile of dp_mod_tsb.sv was successful.
-# 3 compiles, 0 failed with no errors.
-vcd file dump.vcd
-# ** Error: (vsim-3400) The default VCD output file "dump.vcd" is already opened. Use the 'vcd files' command to create multiple VCD files.
-# 
-vcd add -r /tsb/*
-# ** Error (suppressible): (vsim-3561) No objects found matching 'tsb'.
-exit
-# End time: 09:15:24 on Mar 06,2026, Elapsed time: 0:03:14
-# Errors: 2, Warnings: 1
+########################################### 
+# START TEST #           1
+########################################### 
+#  Number of input samples       38401
+########################################### 
+#  TEST #           1
+#  AM MODULATION
+#  fsc = 0.0096
+#  fmod = 0.005
+#  fc = 0.0010.7
+#  Number of checked samples       38401
+#  Number of errors           0
+########################################### 
+# ** Note: $stop    : C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv(201)
+#    Time: 384231 ns  Iteration: 0  Instance: /dp_mod_tsb
+# Break in Module dp_mod_tsb at C:/PDS_FPGA/2026/Practicas_PDS/P2/tsb/dp_mod_tsb.sv line 201

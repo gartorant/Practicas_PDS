@@ -16,7 +16,7 @@ module dp_mod_dds #(
   logic [M-1:0] b0_ac_r;  // U[M,0]
 
   // b1 PRE PROCESADO
-  logic [L-3:0] b1_pre_s;  // U[L-2,0]
+  logic [L-3:0] b1_pre_s;       // U[L-2,0]
   logic         b1_pre_ctrl_s;  // bit
   logic [L-3:0] b1_pre_addr_r;  // U[L-2,0]
 
@@ -26,7 +26,7 @@ module dp_mod_dds #(
   // b3 post procesado
   logic         b3_post_ctrl1_r;  // bit
   logic         b3_post_ctrl_2r;  // bit
-  logic [W-1:0] b3_od_sin_wave_r;  // U[W,0]
+  logic [W-1:0] b3_od_sin_wave_r; // U[W,0]
 
   /* DESCRIPCION ------------------------- */
   // b0 ACCUMULADOR
